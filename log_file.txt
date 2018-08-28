@@ -1,0 +1,27 @@
+Current date and time to update log: 2018-08-10.02:09:28
+Members present: All
+Short Description of work: Made logupdate.cpp file to automate logging process
+Duration of session: 60 minutes
+Name of files affected: Logupdate.cpp
+Estimated lines of code affected: 45
+
+Current date and time to update log: 2018-08-10.03:21:22
+Members present: SK,IPS,KG,sk,SB
+Short Description of work: read about threads and had a walkthrough of the code in threads.c and timer.c and threads.h
+Duration of session: 100 minutes
+Name of files affected: None
+Estimated lines of code affected: 0
+
+Current date and time to update log: 2018-08-14.22:46:48
+Members present: KG, IPS, SK, SK, SB
+Short Description of work: T-01 Task 1 completed.
+Duration of session: 2 hours
+Name of files affected: thread.c, thread.h
+Estimated lines of code affected: 10
+
+Current date and time to update log: 2018-08-15.19:27:33
+Members present: KG, SB, IPS, SK, SK
+Short Description of work: Task 2 and Task 3 of T01 are completed. Functions implemented: thread_block_till, thread_set_next_wakeup
+Duration of session: 8 hours
+Name of files affected: thread.c, thread.h, timer.c
+Estimated lines of code affected: 60
