@@ -95,6 +95,7 @@ struct thread
     /* Shared between thread.c and synch.c. */
     struct list_elem elem;              /* List element. */
     struct list_elem sleepers_elem;     /* Sleepers List element */
+    // struct list_elem sema_elem;
 
 #ifdef USERPROG
     /* Owned by userprog/process.c. */
@@ -141,8 +142,8 @@ void thread_set_nice (int);
 int thread_get_recent_cpu (void);
 int thread_get_load_avg (void);
 
-void thread_set_priority_temporarily_up();
-void thread_priority_restore();
+void thread_set_priority_temporarily_up(void);
+void thread_priority_restore(void);
 void thread_block_till(int64_t);
-void thread_set_next_wakeup();
+void thread_set_next_wakeup(void);
 #endif /* threads/thread.h */

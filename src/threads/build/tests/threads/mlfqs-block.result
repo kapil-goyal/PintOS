@@ -21,5 +21,7 @@ Differences in `diff -u' format:
   (mlfqs-block) Main thread spinning for 5 seconds...
   (mlfqs-block) Main thread releasing lock.
 - (mlfqs-block) ...got it.
-  (mlfqs-block) Block thread should have already acquired lock.
+- (mlfqs-block) Block thread should have already acquired lock.
++ (mlfqs-block) (mlfqs-block) ...got it.Block thread should have already acquired lock.
++ 
   (mlfqs-block) end

@@ -50,6 +50,12 @@ sema_init (struct semaphore *sema, unsigned value)
   list_init (&sema->waiters);
 }
 
+static bool compare(const struct list_elem *a,const struct list_elem *b,void *aux UNUSED){
+  struct thread *A = list_entry(a,struct thread,elem);
+  struct thread *B = list_entry(b,struct thread,elem);
+  return B->priority < A->priority;
+}
+
 /* Down or "P" operation on a semaphore.  Waits for SEMA's value
    to become positive and then atomically decrements it.
 
@@ -68,7 +74,13 @@ sema_down (struct semaphore *sema)
   old_level = intr_disable ();
   while (sema->value == 0) 
     {
-      list_push_back (&sema->waiters, &thread_current ()->elem);
+      // if(list_empty(&sema->waiters)){
+        // list_push_back (&sema->waiters, &thread_current ()->elem);
+      // }
+      // else{
+        list_insert_ordered(&sema->waiters,&thread_current ()->elem,compare,NULL);
+      // }
+      // list_push_back (&sema->waiters, &thread_current ()->elem);
       thread_block ();
     }
   sema->value--;
@@ -113,11 +125,13 @@ sema_up (struct semaphore *sema)
   ASSERT (sema != NULL);
 
   old_level = intr_disable ();
-  if (!list_empty (&sema->waiters)) 
+  if (!list_empty (&sema->waiters)){ 
     thread_unblock (list_entry (list_pop_front (&sema->waiters),
-                                struct thread, elem));
+                                struct thread, elem));}
+  // else {printf("hello\n");}
   sema->value++;
   intr_set_level (old_level);
+  thread_yield();
 }
 
 static void sema_test_helper (void *sema_);
@@ -189,6 +203,7 @@ lock_init (struct lock *lock)
    interrupt handler.  This function may be called with
    interrupts disabled, but interrupts will be turned back on if
    we need to sleep. */
+
 void
 lock_acquire (struct lock *lock)
 {

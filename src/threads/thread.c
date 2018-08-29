@@ -5,11 +5,12 @@
 #include <stdio.h>
 #include <string.h>
 #include "threads/flags.h"
+#include "devices/timer.h"
 #include "threads/interrupt.h"
 #include "threads/intr-stubs.h"
 #include "threads/palloc.h"
 #include "threads/switch.h"
-#include "threads/synch.h"
+#include "threads/synch.h" 
 #include "threads/vaddr.h"
 #ifdef USERPROG
 #include "userprog/process.h"
@@ -103,6 +104,7 @@ void thread_priority_restore() {
   thread_current()->priority = thread_current()->original_priority;
 }
 
+void
 thread_init (void) 
 {
   ASSERT (intr_get_level () == INTR_OFF);
@@ -236,7 +238,7 @@ thread_create (const char *name, int priority,
 
   /* Add to run queue. */
   thread_unblock (t);
-
+  thread_yield(); // important
   return tid;
 }
 
@@ -333,7 +335,7 @@ thread_exit (void)
 }
 
 // Comparator function to sort ready queue threads according to their original priority.
-bool comp(const struct list_elem *a, const struct list_elem *b, void *aux UNUSED) {
+static bool comp(const struct list_elem *a, const struct list_elem *b, void *aux UNUSED) {
   struct thread *ta = list_entry(a, struct thread, elem);
   struct thread *tb = list_entry(b, struct thread, elem);
   return (ta->priority > tb->priority);
@@ -377,9 +379,17 @@ thread_foreach (thread_action_func *func, void *aux)
 void
 thread_set_priority (int new_priority) 
 {
+  thread_current()->original_priority = thread_current()->priority; 
   thread_current ()->priority = new_priority;
-}
+  // if(list_empty(&ready_list)){
+  //   return;
+  // }
+  // struct thread *next_wanna_run = list_entry(list_front(&ready_list), struct thread, elem);
+  if(thread_current()->original_priority > new_priority){
+    thread_yield();
+  }
 
+}
 /* Returns the current thread's priority. */
 int
 thread_get_priority (void) 
@@ -623,7 +633,7 @@ allocate_tid (void)
 uint32_t thread_stack_ofs = offsetof (struct thread, stack);
 
 // Comparator function  to sort sleepers queue threads acc to their wakeup time.
-bool 
+static bool 
 before (const struct list_elem *a, const struct list_elem *b, void *aux UNUSED) {
   struct thread *thread_a = list_entry(a, struct thread, sleepers_elem);
   struct thread *thread_b = list_entry(b, struct thread, sleepers_elem);
