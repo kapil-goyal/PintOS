@@ -157,7 +157,7 @@ thread_tick (void)
     kernel_ticks++;
 
   // This while loop will wake up all the sleeping threads having wakup time equal to or less than current time.
-  while (next_wakeup_time != INT64_MAX && timer_ticks() == next_wakeup_time && !list_empty(&sleepers)) {
+  while (next_wakeup_time != INT64_MAX && timer_ticks() >= next_wakeup_time && !list_empty(&sleepers)) {
     struct thread* t = list_entry(list_front(&sleepers), struct thread, sleepers_elem);
       list_pop_front(&sleepers);
       thread_unblock(t);
@@ -524,6 +524,8 @@ init_thread (struct thread *t, const char *name, int priority)
   t->priority = priority;
   t->original_priority = priority;
   t->magic = THREAD_MAGIC;
+  t->seeking = NULL;
+  list_init(&t->holding_locks);
   list_push_back (&all_list, &t->allelem);
 }
 
