@@ -91,7 +91,7 @@ struct thread
     int priority;                       /* Priority. */
     int original_priority;              /* An int variable to save previous priority */
     struct list_elem allelem;           /* List element for all threads list. */
-
+    int before_donate_priority;
     /* Shared between thread.c and synch.c. */
     struct list_elem elem;              /* List element. */
     struct list_elem sleepers_elem;     /* Sleepers List element */
