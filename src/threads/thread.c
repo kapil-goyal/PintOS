@@ -387,8 +387,16 @@ thread_foreach (thread_action_func *func, void *aux)
 void
 thread_set_priority (int new_priority) 
 {
-  thread_current()->original_priority = thread_current()->priority; 
-  thread_current ()->priority = new_priority;
+  thread_current()->original_priority = thread_current()->priority;
+  if(thread_current()->before_donate_priority == thread_current()->priority){
+    thread_current ()->priority = new_priority;
+  } 
+  else
+  {
+    thread_current ()->priority = new_priority>thread_current ()->priority ? new_priority:thread_current ()->priority;
+  }
+  thread_current()->before_donate_priority = new_priority;
+  
   if(list_empty(&ready_list)){
     return;
   }
@@ -522,9 +530,11 @@ init_thread (struct thread *t, const char *name, int priority)
   t->stack = (uint8_t *) t + PGSIZE;
   t->wakeup_at = -1;
   t->priority = priority;
+  t->before_donate_priority=priority;
   t->original_priority = priority;
   t->magic = THREAD_MAGIC;
   t->seeking = NULL;
+  t->seeking_sema= NULL;
   list_init(&t->holding_locks);
   list_push_back (&all_list, &t->allelem);
 }

@@ -96,9 +96,11 @@ struct thread
     /* Shared between thread.c and synch.c. */
     struct list_elem elem;              /* List element. */
     struct list_elem sleepers_elem;     /* Sleepers List element */
+    struct list_elem sema_elem;
     struct list holding_locks;           /* list of acquired locks by this thread*/
     // struct list_elem sema_elem;
     struct lock *seeking;               /* seeking lock for the current thread*/
+    struct semaphore *seeking_sema;
 #ifdef USERPROG
     /* Owned by userprog/process.c. */
     uint32_t *pagedir;                  /* Page directory. */
