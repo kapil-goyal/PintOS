@@ -92,15 +92,13 @@ struct thread
     int priority;                       /* Priority. */
     int original_priority;              /* An int variable to save previous priority */
     struct list_elem allelem;           /* List element for all threads list. */
-    int before_donate_priority;
-    /* Shared between thread.c and synch.c. */
+    int before_donate_priority;			/* Shared between thread.c and synch.c. */
     struct list_elem elem;              /* List element. */
     struct list_elem sleepers_elem;     /* Sleepers List element */
-    struct list_elem sema_elem;
-    struct list holding_locks;           /* list of acquired locks by this thread*/
-    // struct list_elem sema_elem;
+    struct list_elem sema_elem;			/* Used to make list of threads in semaphore waiters list*/
+    struct list holding_locks;          /* list of acquired locks by this thread*/
     struct lock *seeking;               /* seeking lock for the current thread*/
-    struct semaphore *seeking_sema;
+    struct semaphore *seeking_sema;		/* seeking semaphore for the current thread*/
 #ifdef USERPROG
     /* Owned by userprog/process.c. */
     uint32_t *pagedir;                  /* Page directory. */

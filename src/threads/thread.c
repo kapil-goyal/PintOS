@@ -383,11 +383,11 @@ thread_foreach (thread_action_func *func, void *aux)
     }
 }
 
-/* Sets the current thread's priority to NEW_PRIORITY. */
+/* Sets the current thread's priority to NEW_PRIORITY. Also preemption is taken care of
+   Donation of priority is also considered. Now thread->priority is considered as donated priority */
 void
 thread_set_priority (int new_priority) 
 {
-  thread_current()->original_priority = thread_current()->priority;
   if(thread_current()->before_donate_priority == thread_current()->priority){
     thread_current ()->priority = new_priority;
   } 
