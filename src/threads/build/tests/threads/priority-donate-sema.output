@@ -1,4 +1,4 @@
-Writing command line to /tmp/nsREVTGrox.dsk...
+Writing command line to /tmp/JpfesalxxD.dsk...
 squish-pty bochs -q
 ========================================================================
                        Bochs x86 Emulator 2.5.1
@@ -22,8 +22,8 @@ Executing 'priority-donate-sema':
 (priority-donate-sema) Main thread finished.
 (priority-donate-sema) end
 Execution of 'priority-donate-sema' complete.
-Timer: 89 ticks
-Thread: 0 idle ticks, 92 kernel ticks, 0 user ticks
+Timer: 91 ticks
+Thread: 0 idle ticks, 94 kernel ticks, 0 user ticks
 Console: 728 characters output
 Keyboard: 0 keys pressed
 Powering off...

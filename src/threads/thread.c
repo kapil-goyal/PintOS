@@ -38,6 +38,9 @@ static struct list all_list;
 /* Idle thread. */
 static struct thread *idle_thread;
 
+/* Manager thread*/
+static struct thread *manager_thread;
+
 /* Initial thread, the thread running init.c:main(). */
 static struct thread *initial_thread;
 
@@ -69,6 +72,8 @@ bool thread_mlfqs;
 static void kernel_thread (thread_func *, void *aux);
 
 static void idle (void *aux UNUSED);
+static void manager (void);
+void timer_wakeup (void);
 static struct thread *running_thread (void);
 static struct thread *next_thread_to_run (void);
 static void init_thread (struct thread *, const char *name, int priority);
@@ -137,7 +142,11 @@ thread_start (void)
 
   /* Wait for the idle thread to initialize idle_thread. */
   sema_down (&idle_started);
+
+  thread_create ("manager", PRI_MAX, manager, NULL);
 }
+
+
 
 /* Called by the timer interrupt handler at each timer tick.
    Thus, this function runs in an external interrupt context. */
@@ -157,11 +166,13 @@ thread_tick (void)
     kernel_ticks++;
 
   // This while loop will wake up all the sleeping threads having wakup time equal to or less than current time.
-  while (next_wakeup_time != INT64_MAX && timer_ticks() >= next_wakeup_time && !list_empty(&sleepers)) {
-    struct thread* t = list_entry(list_front(&sleepers), struct thread, sleepers_elem);
-      list_pop_front(&sleepers);
-      thread_unblock(t);
-      thread_set_next_wakeup();
+  if (next_wakeup_time != INT64_MAX && timer_ticks() == next_wakeup_time) {
+    // struct thread* t = list_entry(list_front(&sleepers), struct thread, sleepers_elem);
+    // list_pop_front(&sleepers);
+    thread_unblock(manager_thread);
+    // thread_wakeup(t);
+    // thread_set_next_wakeup();
+
   }
 
   /* Enforce preemption. */
@@ -292,6 +303,10 @@ thread_unblock (struct thread *t)
   // list_push_back (&ready_list, &t->elem);
   t->status = THREAD_READY;
   intr_set_level (old_level);
+
+  // if (t->priority > thread_current()->priority) {
+  //   thread_yield();
+  // }
 }
 
 /* Returns the name of the running thread. */
@@ -481,6 +496,57 @@ idle (void *idle_started_ UNUSED)
          7.11.1 "HLT Instruction". */
       asm volatile ("sti; hlt" : : : "memory");
     }
+}
+
+// This function will set next_wakeup_time value acc to sleepers queue value.
+void thread_set_next_wakeup() {
+  if (list_empty(&sleepers)) {
+    next_wakeup_time = INT64_MAX;
+    return;
+  }
+  struct thread *front_thread = list_entry(list_front(&sleepers), struct thread, sleepers_elem);
+  next_wakeup_time = front_thread->wakeup_at;
+}
+
+void
+thread_wakeup(struct thread *cur) {
+  if (list_empty(&sleepers))
+    return;
+  struct thread *t = list_entry(list_front(&sleepers), struct thread, sleepers_elem);
+  if (cur->wakeup_at == t->wakeup_at) {
+    list_pop_front(&sleepers);
+    thread_unblock(t);
+    thread_wakeup(t);
+  }
+}
+
+void
+timer_wakeup (void) {
+  enum intr_level intr_old_level = intr_get_level();
+  intr_disable();
+
+  struct thread *t = list_entry(list_front(&sleepers), struct thread, sleepers_elem);
+  if (!list_empty(&sleepers) && t->wakeup_at <= next_wakeup_time) {
+    list_pop_front(&sleepers);
+    thread_unblock(t);
+    thread_wakeup(t);
+    thread_set_next_wakeup();
+  }
+  
+  intr_set_level(intr_old_level);
+}
+
+static void
+manager () {
+  manager_thread = thread_current();
+
+  while (true) {
+    intr_disable();
+    thread_block();
+    intr_enable();
+
+    timer_wakeup();
+  }
 }
 
 /* Function used as the basis for a kernel thread. */
@@ -681,12 +747,4 @@ thread_block_till(int64_t wakeup_at) {
   intr_set_level(previous_intr);
 }
 
-// This function will set next_wakeup_time value acc to sleepers queue value.
-void thread_set_next_wakeup() {
-  if (list_empty(&sleepers)) {
-    next_wakeup_time = INT64_MAX;
-    return;
-  }
-  struct thread *front_thread = list_entry(list_front(&sleepers), struct thread, sleepers_elem);
-  next_wakeup_time = front_thread->wakeup_at;
-}
+

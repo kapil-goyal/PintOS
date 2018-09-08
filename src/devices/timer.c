@@ -108,10 +108,10 @@ timer_sleep (int64_t ticks)
     return;
 
   // New Algorithm implemented.
-  thread_set_priority_temporarily_up();
+  // thread_set_priority_temporarily_up();
   thread_block_till(wake_time);
-  thread_set_next_wakeup();
-  thread_priority_restore();
+  // thread_set_next_wakeup();
+  // thread_priority_restore();
   
 }
 

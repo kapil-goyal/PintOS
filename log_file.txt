@@ -26,24 +26,24 @@ Duration of session: 8 hours
 Name of files affected: thread.c, thread.h, timer.c
 Estimated lines of code affected: 60
 
-Current date and time to update log: 2018-08-28.20:45:00
-Members present: ip, kg, sak, shk, sb
-Short Description of work: Completed Task 1 of Assignment 2.Changed thread_set_priority() in which we checked if new priority of runnig thread is less than priority of next thread to run then call thread_yield(). 
-Duration of session: 70 min
-Name of files affected: thread.c
-Estimated lines of code affected: 7
+Current date and time to update log: 2018-08-28.20:45:17
+Members present: KP, SK, SK, SB, IPS
+Short Description of work: T02 Task-01 and Task-02 completed
+Duration of session: 5 hours
+Name of files affected: thread.c thread.h synch.c
+Estimated lines of code affected: 48
 
-Current date and time to update log: 2018-08-29.01:33:39
-Members present: ip, kg, sak, shk, sb
-Short Description of work: Started Task 2 of Assignment 2.Changed sema_down() such that we inserted a thread in waiting list of sema_waiters in order of priority.
-Duration of session: 90 min
-Name of files affected: synch.c
-Estimated lines of code affected: 4
+Current date and time to update log: 2018-08-29.21:29:20
+Members present: KP, SK, SK, SB, IPS
+Short Description of work: T02 Task-03 and Task-04 completed
+Duration of session: 2 hours
+Name of files affected: thread.c thread.h synch.c synch.h
+Estimated lines of code affected: 30
 
-Current date and time to update log: 2018-08-29.19:57:32
-Members present: ip, kg, sak, shk, sb
-Short Description of work: Completed Task 2 of Assignment 2.changed sema_up such that we call thread_yield() when a thread is unblocked after taking out of sema_waiters list.
-Duration of session: 04 hrs 30 minutes
-Name of files affected: synch.c
-Estimated lines of code affected: 5
+Current date and time to update log: 2018-09-31.03:31:36
+Members present: KP, SK, SK, SB, IPS
+Short Description of work: T02 Task-05 completed
+Duration of session: 8 hours
+Name of files affected: thread.c thread.h synch.c synch.h
+Estimated lines of code affected: 114
 

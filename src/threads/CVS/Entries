@@ -22,7 +22,7 @@
 /switch.h/1.1.1.1/Tue Aug 14 13:11:08 2018//
 /vaddr.h/1.1.1.1/Tue Aug 14 13:11:08 2018//
 D/tests////
-/synch.c/1.4/Mon Sep  3 11:06:19 2018//
-/synch.h/1.3/Mon Sep  3 11:15:29 2018//
 /thread.c/1.9/Mon Sep  3 11:10:33 2018//
 /thread.h/1.6/Mon Sep  3 11:14:18 2018//
+/synch.c/1.5/Mon Sep  3 17:55:17 2018//
+/synch.h/1.4/Mon Sep  3 17:58:01 2018//
