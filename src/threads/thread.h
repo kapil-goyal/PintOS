@@ -4,7 +4,8 @@
 #include <debug.h>
 #include <list.h>
 #include <stdint.h>
-#include <synch.h>
+#include "threads/synch.h"
+#include <fixed-point.h>
 
 /* States in a thread's life cycle. */
 enum thread_status
@@ -90,6 +91,8 @@ struct thread
     uint8_t *stack;                     /* Saved stack pointer. */
     int64_t wakeup_at;                  /* Time at which sleeping thread must be woken up */
     int priority;                       /* Priority. */
+    int nice_value;                     /* Nice value of thread */
+    int recent_cpu;                     /* Recent CPU value of thread */
     int original_priority;              /* An int variable to save previous priority */
     struct list_elem allelem;           /* List element for all threads list. */
     int before_donate_priority;			/* Shared between thread.c and synch.c. */
@@ -138,6 +141,10 @@ void thread_foreach (thread_action_func *, void *);
 
 int thread_get_priority (void);
 void thread_set_priority (int);
+
+void thread_update_priority (struct thread *);
+void thread_update_recent_cpu (struct thread *);
+void thread_update_load_avg (void);
 
 int thread_get_nice (void);
 void thread_set_nice (int);

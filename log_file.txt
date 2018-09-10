@@ -40,10 +40,23 @@ Duration of session: 2 hours
 Name of files affected: thread.c thread.h synch.c synch.h
 Estimated lines of code affected: 30
 
-Current date and time to update log: 2018-09-31.03:31:36
+Current date and time to update log: 2018-08-31.03:31:36
 Members present: KP, SK, SK, SB, IPS
 Short Description of work: T02 Task-05 completed
 Duration of session: 8 hours
 Name of files affected: thread.c thread.h synch.c synch.h
 Estimated lines of code affected: 114
 
+Current date and time to update log: 2018-09-08.23:14:57
+Members present: KP, SK, SK, SB, IPS
+Short Description of work: T03 Task-01 completed
+Duration of session: 2 hours
+Name of files affected: thread.c timer.c
+Estimated lines of code affected: 90
+
+Current date and time to update log: 2018-09-09.20:43:23
+Members present: KP, SK, SK, SB, IPS
+Short Description of work: T03 completed
+Duration of session: 5 hours
+Name of files affected: thread.c thread.h timer.c fixed-point.h
+Estimated lines of code affected: 120

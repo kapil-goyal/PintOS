@@ -303,7 +303,7 @@ lock_try_acquire (struct lock *lock)
   if (success)
     lock->holder = thread_current ();
   return success;
-}int priority;
+}
 
 /* Releases LOCK, which must be owned by the current thread.
 
