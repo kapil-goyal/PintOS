@@ -18,8 +18,24 @@
 #include "threads/thread.h"
 #include "threads/vaddr.h"
 
+const int WORD_SIZE = 4; /* Number of bytes per word */
+
 static thread_func start_process NO_RETURN;
 static bool load (const char *cmdline, void (**eip) (void), void **esp);
+
+void
+test_stack (int *t)
+{
+  int i;
+  int argc = t[1];
+  char ** argv;
+   argv = (char **) t[2];
+  printf("ARGC:%d ARGV:%x\n", argc, (unsigned int)argv);
+  for (i = 0; i < argc; i++)
+    printf("Argv[%d] = %x pointing at %s\n",
+           i, (unsigned int)argv[i], argv[i]);
+}
+
 
 /* Starts a new thread running a user program loaded from
    FILENAME.  The new thread may be scheduled (and may even exit)
@@ -39,7 +55,7 @@ process_execute (const char *file_name)
   strlcpy (fn_copy, file_name, PGSIZE);
 
   /* Create a new thread to execute FILE_NAME. */
-  tid = thread_create (file_name, PRI_DEFAULT, start_process, fn_copy);
+  tid = thread_create (file_name, PRI_MAX, start_process, fn_copy);
   if (tid == TID_ERROR)
     palloc_free_page (fn_copy); 
   return tid;
@@ -195,7 +211,7 @@ struct Elf32_Phdr
 #define PF_W 2          /* Writable. */
 #define PF_R 4          /* Readable. */
 
-static bool setup_stack (void **esp);
+static bool setup_stack (void **esp, char *file_name, char *args);
 static bool validate_segment (const struct Elf32_Phdr *, struct file *);
 static bool load_segment (struct file *file, off_t ofs, uint8_t *upage,
                           uint32_t read_bytes, uint32_t zero_bytes,
@@ -206,7 +222,7 @@ static bool load_segment (struct file *file, off_t ofs, uint8_t *upage,
    and its initial stack pointer into *ESP.
    Returns true if successful, false otherwise. */
 bool
-load (const char *file_name, void (**eip) (void), void **esp) 
+load (const char *cmd_line_input, void (**eip) (void), void **esp) 
 {
   struct thread *t = thread_current ();
   struct Elf32_Ehdr ehdr;
@@ -214,6 +230,12 @@ load (const char *file_name, void (**eip) (void), void **esp)
   off_t file_ofs;
   bool success = false;
   int i;
+
+   char *args, *file_name;
+  /* Separate file_name and args */
+  file_name = strtok_r (cmd_line_input, " ", &args);
+  /* printf ("file: %s \nargs: %s",file_name, args); */
+
 
   /* Allocate and activate page directory. */
   t->pagedir = pagedir_create ();
@@ -302,8 +324,9 @@ load (const char *file_name, void (**eip) (void), void **esp)
     }
 
   /* Set up stack. */
-  if (!setup_stack (esp))
+  if (!setup_stack (esp , file_name, args ))
     goto done;
+  test_stack (*esp);
 
   /* Start address. */
   *eip = (void (*) (void)) ehdr.e_entry;
@@ -427,7 +450,7 @@ load_segment (struct file *file, off_t ofs, uint8_t *upage,
 /* Create a minimal stack by mapping a zeroed page at the top of
    user virtual memory. */
 static bool
-setup_stack (void **esp) 
+setup_stack (void **esp, char *file_name, char *args) 
 {
   uint8_t *kpage;
   bool success = false;
@@ -436,8 +459,71 @@ setup_stack (void **esp)
   if (kpage != NULL) 
     {
       success = install_page (((uint8_t *) PHYS_BASE) - PGSIZE, kpage, true);
-      if (success)
-        *esp = PHYS_BASE;
+      if (success){
+        *esp = PHYS_BASE-12;
+         /* Tokenize the string accross spaces (DELIMITER) */
+        char *token, *save_ptr;
+        int argc = 1;
+        char *argv[LOADER_ARGS_LEN / 2 + 1];
+        argv[0] = file_name;
+         for (token = strtok_r (args, " ", &save_ptr); token != NULL;
+             token = strtok_r (NULL, " ", &save_ptr))
+        {
+          argv[argc] = token;
+          argc++;
+        }
+        argv[argc] = NULL;
+         /* Push the args to the stack */
+        int i, bytes_written = 0;
+        char *addr[LOADER_ARGS_LEN / 2 + 1];
+        size_t s;
+        
+        for (i = 0; i<=argc-1 ; i++)
+        {
+          if(i==0){
+            s = (strlen(argv[i])) * (sizeof (char));
+          }
+          else{
+            s = (strlen(argv[i]) + 1) * (sizeof (char));
+          }
+          
+          *esp -= s;
+          memcpy (*esp, argv[i], s);
+          bytes_written += s;
+          addr[i] = (char *) *esp;
+        }
+        addr[argc] = NULL;
+         /* Align the stack pointer location to nearest WORD_SIZE multiple */
+        uint8_t nulls[3] = {0,0,0};
+        s =(WORD_SIZE - (bytes_written % WORD_SIZE))%WORD_SIZE;
+        *esp -= s;
+        memcpy (*esp, nulls, s);
+
+        // printf("%x\n",(unsigned int) *esp );
+
+         /* Push addresses of argv array. */
+        for (i = argc; i>=0; i--)
+        {
+          s = (sizeof (char *));
+          *esp -= s;
+          memcpy (*esp, addr + i, s);
+        }
+         /* Push argv start address. */
+        char *argv_starting = *esp; 
+        s = sizeof (argv_starting);
+        *esp -= s;
+        memcpy(*esp, &argv_starting, s);
+         /* Push argc. */
+        s = sizeof (int);
+        *esp -= s;
+        memcpy (*esp, &argc, s);
+         /* Push return address (UNUSED). */
+        argc = 0;
+        s = sizeof (void (*) ());
+        *esp -= s;
+        memcpy (*esp, &argc, s);
+      }
+
       else
         palloc_free_page (kpage);
     }

@@ -442,7 +442,7 @@ thread_set_priority (int new_priority)
   }
   struct thread *next_wanna_run = list_entry(list_front(&ready_list), struct thread, elem);
 
-  if( next_wanna_run->priority > new_priority){
+  if( next_wanna_run->priority >= new_priority){
     thread_yield();
   }
 }
