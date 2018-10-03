@@ -95,7 +95,7 @@
 00000000000i[     ] reset of 'harddrv' plugin device by virtual method
 00000000000i[     ] reset of 'serial' plugin device by virtual method
 00000000000i[     ] reset of 'parallel' plugin device by virtual method
-00000004855i[BIOS ] $Revision: 10789 $ $Date: 2011-11-24 17:03:51 +0100 (Do, 24. Nov 2011) $
+00000004855i[BIOS ] $Revision: 1.1 $ $Date: 2018/10/03 17:10:54 $
 00000318302i[KBD  ] reset-disable command received
 00000319566i[BIOS ] Starting rombios32
 00000320013i[BIOS ] Shutdown flag 0
@@ -104,10 +104,10 @@
 00000332095i[BIOS ] Found 1 cpu(s)
 00000348349i[BIOS ] bios_table_addr: 0x000fbde8 end=0x000fcc00
 00000360919i[BIOS ] bios_table_cur_addr: 0x000fbde8
-00000488537i[VBIOS] VGABios $Id: vgabios.c,v 1.75 2011/10/15 14:07:21 vruppert Exp $
+00000488537i[VBIOS] VGABios $Id: bochsout.txt,v 1.1 2018/10/03 17:10:54 group02 Exp $
 00000488608i[BXVGA] VBE known Display Interface b0c0
 00000488640i[BXVGA] VBE known Display Interface b0c5
-00000491565i[VBIOS] VBE Bios $Id: vbe.c,v 1.64 2011/07/19 18:25:05 vruppert Exp $
+00000491565i[VBIOS] VBE Bios $Id: bochsout.txt,v 1.1 2018/10/03 17:10:54 group02 Exp $
 00000837388i[BIOS ] ata0-0: PCHS=1/16/63 translation=none LCHS=1/16/63
 00004718812i[BIOS ] IDE time out
 00007775206i[BIOS ] Booting from 0000:7c00

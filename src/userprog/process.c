@@ -55,7 +55,7 @@ process_execute (const char *file_name)
   strlcpy (fn_copy, file_name, PGSIZE);
 
   /* Create a new thread to execute FILE_NAME. */
-  tid = thread_create (file_name, PRI_MAX, start_process, fn_copy);
+  tid = thread_create (file_name, PRI_DEFAULT, start_process, fn_copy);
   if (tid == TID_ERROR)
     palloc_free_page (fn_copy); 
   return tid;
@@ -102,8 +102,16 @@ start_process (void *file_name_)
    This function will be implemented in problem 2-2.  For now, it
    does nothing. */
 int
-process_wait (tid_t child_tid UNUSED) 
+process_wait (tid_t child_tid) 
 {
+  // int i;
+  // for(i=0;i<1<<10;i++){
+  //   thread_yield();
+  // }
+  while(check_child_status(child_tid)){
+    thread_yield();
+  }
+
   return -1;
 }
 
@@ -326,7 +334,7 @@ load (const char *cmd_line_input, void (**eip) (void), void **esp)
   /* Set up stack. */
   if (!setup_stack (esp , file_name, args ))
     goto done;
-  test_stack (*esp);
+  // test_stack (*esp);
 
   /* Start address. */
   *eip = (void (*) (void)) ehdr.e_entry;
@@ -480,12 +488,12 @@ setup_stack (void **esp, char *file_name, char *args)
         
         for (i = 0; i<=argc-1 ; i++)
         {
-          if(i==0){
-            s = (strlen(argv[i])) * (sizeof (char));
-          }
-          else{
+          // if(i==0){
+            // s = (strlen(argv[i])) * (sizeof (char));
+          // }
+          // else{
             s = (strlen(argv[i]) + 1) * (sizeof (char));
-          }
+          // }
           
           *esp -= s;
           memcpy (*esp, argv[i], s);

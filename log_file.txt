@@ -60,3 +60,24 @@ Short Description of work: T03 completed
 Duration of session: 5 hours
 Name of files affected: thread.c thread.h timer.c fixed-point.h
 Estimated lines of code affected: 120
+
+Current date and time to update log: 2018-09-12.16:40:23
+Members present: KP, SK, SK, SB, IPS
+Short Description of work: Added test_stack() and read the assignment
+Duration of session: 2 hours 30 minutes
+Name of files affected: process.c
+Estimated lines of code affected: 33
+
+Current date and time to update log: 2018-09-23.20:41:45
+Members present: KP, SK, SK, SB, IPS
+Short Description of work: Completed setup_stack and try to fix the bugs
+Duration of session: 6 hours 30 minutes
+Name of files affected: process.c
+Estimated lines of code affected: 63
+
+Current date and time to update log: 2018-09-24.19:00:19
+Members present: KP, SK, SK, SB, IPS
+Short Description of work: Finalised code and fixed bugs and log file updated
+Duration of session: 1 hour 10 minutes
+Name of files affected: process.c
+Estimated lines of code affected: 3

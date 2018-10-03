@@ -847,4 +847,20 @@ thread_block_till(int64_t wakeup_at) {
   intr_set_level(previous_intr);
 }
 
+bool check_child_status(tid_t child_tid){
+  struct list_elem *e;
+
+  for (e = list_begin (&all_list); e != list_end (&all_list);
+       e = list_next (e))
+  {
+    struct thread *t = list_entry (e, struct thread, allelem);
+    if(t->tid == child_tid){
+      if(t->status!=THREAD_DYING){
+        return true;
+      }
+    }
+  }
+  return false;
+}
+
 

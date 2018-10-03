@@ -1,0 +1,36 @@
+Copying tests/userprog/read-boundary to scratch partition...
+Copying ../../tests/userprog/sample.txt to scratch partition...
+Writing command line to /tmp/xPc5ka78yH.dsk...
+squish-pty bochs -q
+========================================================================
+                       Bochs x86 Emulator 2.5.1
+              Built from SVN snapshot on January 6, 2012
+                  Compiled on Oct 10 2012 at 11:12:02
+========================================================================
+Kernel command line: -q -f extract run read-boundary
+Pintos booting with 4,096 kB RAM...
+374 pages available in kernel pool.
+373 pages available in user pool.
+Calibrating timer...  204,600 loops/s.
+hd0:0: detected 1,008 sector (504 kB) disk, model "Generic 1234", serial "BXHD00011"
+hd0:1: detected 4,032 sector (1 MB) disk, model "Generic 1234", serial "BXHD00012"
+hd1:0: detected 1,008 sector (504 kB) disk, model "Generic 1234", serial "BXHD00021"
+Formatting file system...done.
+Boot complete.
+Extracting ustar archive from scratch disk into file system...
+Putting 'read-boundary' into the file system...
+Putting 'sample.txt' into the file system...
+Erasing ustar archive...
+Executing 'read-boundary':
+(read-boundary) begin
+(read-boundary) open "sample.txt"
+Execution of 'read-boundary' complete.
+Timer: 349 ticks
+Thread: 30 idle ticks, 281 kernel ticks, 41 user ticks
+hd0:0: 0 reads, 0 writes
+hd0:1: 98 reads, 212 writes
+hd1:0: 102 reads, 2 writes
+Console: 952 characters output
+Keyboard: 0 keys pressed
+Exception: 0 page faults
+Powering off...

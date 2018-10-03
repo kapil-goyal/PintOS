@@ -26,6 +26,8 @@ typedef int tid_t;
 #define PRI_DEFAULT 31                  /* Default priority. */
 #define PRI_MAX 63                      /* Highest priority. */
 
+#define MAX_FILES 128
+
 /* A kernel thread or user process.
 
    Each thread structure is stored in its own 4 kB page.  The
@@ -109,6 +111,9 @@ struct thread
 
     /* Owned by thread.c. */
     unsigned magic;                     /* Detects stack overflow. */
+
+    struct file *files[MAX_FILES];
+
   };
 
 /* If false (default), use round-robin scheduler.
@@ -155,4 +160,7 @@ void thread_set_priority_temporarily_up(void);
 void thread_priority_restore(void);
 void thread_block_till(int64_t);
 void thread_set_next_wakeup(void);
+
+bool check_child_status(tid_t);
+
 #endif /* threads/thread.h */
