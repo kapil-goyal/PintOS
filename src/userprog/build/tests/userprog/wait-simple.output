@@ -1,6 +1,6 @@
 Copying tests/userprog/wait-simple to scratch partition...
 Copying tests/userprog/child-simple to scratch partition...
-Writing command line to /tmp/xQ0cUPYhVw.dsk...
+Writing command line to /tmp/wUxEgZMIqt.dsk...
 squish-pty bochs -q
 ========================================================================
                        Bochs x86 Emulator 2.5.1
@@ -9,7 +9,7 @@ squish-pty bochs -q
 ========================================================================
 Kernel command line: -q -f extract run wait-simple
 Pintos booting with 4,096 kB RAM...
-374 pages available in kernel pool.
+373 pages available in kernel pool.
 373 pages available in user pool.
 Calibrating timer...  204,600 loops/s.
 hd0:0: detected 1,008 sector (504 kB) disk, model "Generic 1234", serial "BXHD00011"
@@ -23,13 +23,18 @@ Putting 'child-simple' into the file system...
 Erasing ustar archive...
 Executing 'wait-simple':
 (wait-simple) begin
+(child-simple) run
+child-simple: exit(81)
+(wait-simple) wait(exec()) = -1
+(wait-simple) end
+wait-simple: exit(0)
 Execution of 'wait-simple' complete.
-Timer: 391 ticks
-Thread: 30 idle ticks, 336 kernel ticks, 28 user ticks
+Timer: 462 ticks
+Thread: 30 idle ticks, 359 kernel ticks, 76 user ticks
 hd0:0: 0 reads, 0 writes
-hd0:1: 86 reads, 388 writes
+hd0:1: 122 reads, 388 writes
 hd1:0: 190 reads, 2 writes
-Console: 910 characters output
+Console: 1024 characters output
 Keyboard: 0 keys pressed
 Exception: 0 page faults
 Powering off...

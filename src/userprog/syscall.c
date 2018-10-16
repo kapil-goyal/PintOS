@@ -49,15 +49,32 @@ void exit (int status){
 }
 
 
+
 static int exec (const char *cmd_line){
   validate(cmd_line);
-  thread_exit();
-  return -1;
+  int size= strlen(cmd_line);
+  validate (cmd_line + size-1);
+
+  tid_t tid = process_execute(cmd_line);
+
+  struct thread* child = get_thread_from_tid(tid);
+
+  if(child==NULL){
+    return -1;
+  }
+
+  sema_down(&child->loaded);
+  bool load_status = child->load_complete;
+  if(load_status == 0)
+  {
+    tid = -1;
+    sema_up(&child->completed);
+  }
+  return tid;
 }
 
 
 static int wait (int pid){
-
   return -1;
 }
 
@@ -118,7 +135,7 @@ static int filesize (int fd){
 static int read (int fd, void *buffer, unsigned size){
 
   validate(buffer);
-  validate(buffer+size);
+  validate(buffer+size-1);
 
   struct file *f;
   int ret=-1;
@@ -149,7 +166,7 @@ static int write (int fd, const void *buffer, unsigned size){
   ret = 0;
   
   validate(buffer);
-  validate(buffer+size);
+  validate(buffer+size-1);
 
   if (fd == 1){
     ret = size; 

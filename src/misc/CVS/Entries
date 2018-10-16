@@ -1,13 +1,13 @@
-/bochs-2.2.6-big-endian.patch/1.1.1.1/Tue Aug 14 13:11:08 2018//TUP03-completed
-/bochs-2.2.6-build.sh/1.1.1.1/Tue Aug 14 13:11:08 2018//TUP03-completed
-/bochs-2.2.6-gdbstub-ENN.patch/1.1.1.1/Tue Aug 14 13:11:08 2018//TUP03-completed
-/bochs-2.2.6-jitter.patch/1.1.1.1/Tue Aug 14 13:11:08 2018//TUP03-completed
-/bochs-2.2.6-ms-extensions.patch/1.1.1.1/Tue Aug 14 13:11:08 2018//TUP03-completed
-/bochs-2.2.6-page-fault-segv.patch/1.1.1.1/Tue Aug 14 13:11:08 2018//TUP03-completed
-/bochs-2.2.6-paranoia.patch/1.1.1.1/Tue Aug 14 13:11:08 2018//TUP03-completed
-/bochs-2.2.6-solaris-link.patch/1.1.1.1/Tue Aug 14 13:11:08 2018//TUP03-completed
-/bochs-2.2.6-solaris-tty.patch/1.1.1.1/Tue Aug 14 13:11:08 2018//TUP03-completed
-/bochs-2.2.6-triple-fault.patch/1.1.1.1/Tue Aug 14 13:11:08 2018//TUP03-completed
-/gcc-3.3.6-cross-howto/1.1.1.1/Tue Aug 14 13:11:08 2018//TUP03-completed
-/gdb-macros/1.1.1.1/Tue Aug 14 13:11:08 2018//TUP03-completed
+/bochs-2.2.6-big-endian.patch/1.1.1.1/Mon Oct  1 16:45:01 2018//
+/bochs-2.2.6-build.sh/1.1.1.1/Mon Oct  1 16:45:00 2018//
+/bochs-2.2.6-gdbstub-ENN.patch/1.1.1.1/Mon Oct  1 16:45:01 2018//
+/bochs-2.2.6-jitter.patch/1.1.1.1/Mon Oct  1 16:45:01 2018//
+/bochs-2.2.6-ms-extensions.patch/1.1.1.1/Mon Oct  1 16:45:01 2018//
+/bochs-2.2.6-page-fault-segv.patch/1.1.1.1/Mon Oct  1 16:45:01 2018//
+/bochs-2.2.6-paranoia.patch/1.1.1.1/Mon Oct  1 16:45:01 2018//
+/bochs-2.2.6-solaris-link.patch/1.1.1.1/Mon Oct  1 16:45:01 2018//
+/bochs-2.2.6-solaris-tty.patch/1.1.1.1/Mon Oct  1 16:45:01 2018//
+/bochs-2.2.6-triple-fault.patch/1.1.1.1/Mon Oct  1 16:45:00 2018//
+/gcc-3.3.6-cross-howto/1.1.1.1/Mon Oct  1 16:45:01 2018//
+/gdb-macros/1.1.1.1/Mon Oct  1 16:45:01 2018//
 D

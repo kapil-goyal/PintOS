@@ -1,5 +1,5 @@
 Copying tests/userprog/write-bad-fd to scratch partition...
-Writing command line to /tmp/K21bGkhj92.dsk...
+Writing command line to /tmp/km9pefaimM.dsk...
 squish-pty bochs -q
 ========================================================================
                        Bochs x86 Emulator 2.5.1
@@ -8,7 +8,7 @@ squish-pty bochs -q
 ========================================================================
 Kernel command line: -q -f extract run write-bad-fd
 Pintos booting with 4,096 kB RAM...
-374 pages available in kernel pool.
+373 pages available in kernel pool.
 373 pages available in user pool.
 Calibrating timer...  204,600 loops/s.
 hd0:0: detected 1,008 sector (504 kB) disk, model "Generic 1234", serial "BXHD00011"
@@ -25,7 +25,7 @@ Executing 'write-bad-fd':
 write-bad-fd: exit(0)
 Execution of 'write-bad-fd' complete.
 Timer: 309 ticks
-Thread: 30 idle ticks, 247 kernel ticks, 35 user ticks
+Thread: 30 idle ticks, 246 kernel ticks, 36 user ticks
 hd0:0: 0 reads, 0 writes
 hd0:1: 59 reads, 198 writes
 hd1:0: 96 reads, 2 writes

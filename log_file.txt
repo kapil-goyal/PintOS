@@ -123,3 +123,40 @@ Short Description of work: Create ,read,write Functions implement
 Duration of session: 2 hour 00 minutes
 Name of files affected: syscall.c
 Estimated lines of code affected:  40
+
+==================================================================================================
+Start date and time : 2018-10-16. 19:34 IST 
+Members present: KP, SK, SK, SB, IPS
+Duration of session: 5 hours
+----------------------------------------------------------------------------------------------
+File Affected: 								pintos/src/userprog/process.c
+Function Modified / Implemented:			start_process()
+Short Description:							Used semaphores which are further used in exec call of syscall.c.
+											Changed Value of thread_current->load_completed.
+Estimated no. of lines affected:			5
+----------------------------------------------------------------------------------------------
+File Affected: 								pintos/src/userprog/syscall.c
+Function Modified / Implemented:			exec()
+Short Description:							exec call handled alongwith various cases
+Estimated no. of lines affected:			20
+----------------------------------------------------------------------------------------------
+File Affected: 								pintos/src/threads/thread.c
+Function Modified / Implemented:			get_child_thread_from_id (), init_thread()
+Short Description:							New function added which returns a thread_pointer according to the given tid, semaphores initialized.
+Estimated no. of lines affected:			10
+----------------------------------------------------------------------------------------------
+File Affected: 								pintos/src/threads/thread.h
+Function Modified / Implemented:			In struct thread, two new semaphores are added which are used in exec system call.
+Short Description:							Declaration of semaphores and function
+Estimated no. of lines affected:			5
+
+----------------------------------------------------------------------------------------------
+Total no. of lines changed:					40
+Make check results:							Fail: 3+5+1+1+1
+											Pass: 47+1+6+10+1
+											11 out of 76 failed
+											
+commit message:	"UP-04 Exec completed"
+commit tag: "up04exec"
+time: Wed Oct 17 02:12:43 IST 2018
+====================================================================================================

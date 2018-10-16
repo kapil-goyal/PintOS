@@ -104,9 +104,13 @@ struct thread
     struct list holding_locks;          /* list of acquired locks by this thread*/
     struct lock *seeking;               /* seeking lock for the current thread*/
     struct semaphore *seeking_sema;		/* seeking semaphore for the current thread*/
+    struct semaphore loaded;
+    struct semaphore completed;
+    bool load_complete;
 #ifdef USERPROG
     /* Owned by userprog/process.c. */
     uint32_t *pagedir;                  /* Page directory. */
+    
 #endif
 
     /* Owned by thread.c. */
@@ -119,6 +123,9 @@ struct thread
 /* If false (default), use round-robin scheduler.
    If true, use multi-level feedback queue scheduler.
    Controlled by kernel command-line option "-o mlfqs". */
+
+static struct thread* tid_arr[100] = {0};
+
 extern bool thread_mlfqs;
 
 void thread_init (void);
@@ -162,5 +169,6 @@ void thread_block_till(int64_t);
 void thread_set_next_wakeup(void);
 
 bool check_child_status(tid_t);
+struct thread* get_child_thread_from_id(tid_t);
 
 #endif /* threads/thread.h */

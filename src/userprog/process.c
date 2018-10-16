@@ -17,6 +17,7 @@
 #include "threads/palloc.h"
 #include "threads/thread.h"
 #include "threads/vaddr.h"
+#include "threads/synch.h"
 
 const int WORD_SIZE = 4; /* Number of bytes per word */
 
@@ -79,8 +80,14 @@ start_process (void *file_name_)
 
   /* If load failed, quit. */
   palloc_free_page (file_name);
-  if (!success) 
+  if (!success) {
+    sema_up(&thread_current()->loaded);
+    sema_down(&thread_current()->completed);
     thread_exit ();
+  }
+    
+  thread_current()->load_complete = 1;
+  sema_up(&thread_current()->loaded);
 
   /* Start the user process by simulating a return from an
      interrupt, implemented by intr_exit (in
@@ -104,14 +111,9 @@ start_process (void *file_name_)
 int
 process_wait (tid_t child_tid) 
 {
-  // int i;
-  // for(i=0;i<1<<10;i++){
-  //   thread_yield();
-  // }
   while(check_child_status(child_tid)){
     thread_yield();
   }
-
   return -1;
 }
 
@@ -242,8 +244,6 @@ load (const char *cmd_line_input, void (**eip) (void), void **esp)
    char *args, *file_name;
   /* Separate file_name and args */
   file_name = strtok_r (cmd_line_input, " ", &args);
-  /* printf ("file: %s \nargs: %s",file_name, args); */
-
 
   /* Allocate and activate page directory. */
   t->pagedir = pagedir_create ();
@@ -488,12 +488,7 @@ setup_stack (void **esp, char *file_name, char *args)
         
         for (i = 0; i<=argc-1 ; i++)
         {
-          // if(i==0){
-            // s = (strlen(argv[i])) * (sizeof (char));
-          // }
-          // else{
             s = (strlen(argv[i]) + 1) * (sizeof (char));
-          // }
           
           *esp -= s;
           memcpy (*esp, argv[i], s);
@@ -506,8 +501,6 @@ setup_stack (void **esp, char *file_name, char *args)
         s =(WORD_SIZE - (bytes_written % WORD_SIZE))%WORD_SIZE;
         *esp -= s;
         memcpy (*esp, nulls, s);
-
-        // printf("%x\n",(unsigned int) *esp );
 
          /* Push addresses of argv array. */
         for (i = argc; i>=0; i--)

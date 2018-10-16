@@ -1,5 +1,5 @@
 Copying tests/filesys/base/lg-create to scratch partition...
-Writing command line to /tmp/snCHhAYNC1.dsk...
+Writing command line to /tmp/au9GPNOGJD.dsk...
 squish-pty bochs -q
 ========================================================================
                        Bochs x86 Emulator 2.5.1
@@ -8,7 +8,7 @@ squish-pty bochs -q
 ========================================================================
 Kernel command line: -q -f extract run lg-create
 Pintos booting with 4,096 kB RAM...
-374 pages available in kernel pool.
+373 pages available in kernel pool.
 373 pages available in user pool.
 Calibrating timer...  204,600 loops/s.
 hd0:0: detected 1,008 sector (504 kB) disk, model "Generic 1234", serial "BXHD00011"
@@ -23,13 +23,17 @@ Executing 'lg-create':
 (lg-create) begin
 (lg-create) create "blargle"
 (lg-create) open "blargle" for verification
+(lg-create) verified contents of "blargle"
+(lg-create) close "blargle"
+(lg-create) end
+lg-create: exit(0)
 Execution of 'lg-create' complete.
-Timer: 437 ticks
-Thread: 30 idle ticks, 278 kernel ticks, 132 user ticks
+Timer: 512 ticks
+Thread: 30 idle ticks, 281 kernel ticks, 204 user ticks
 hd0:0: 0 reads, 0 writes
-hd0:1: 86 reads, 358 writes
+hd0:1: 234 reads, 358 writes
 hd1:0: 100 reads, 2 writes
-Console: 927 characters output
+Console: 1034 characters output
 Keyboard: 0 keys pressed
 Exception: 0 page faults
 Powering off...

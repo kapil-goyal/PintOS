@@ -1,5 +1,5 @@
 Copying tests/filesys/base/sm-seq-random to scratch partition...
-Writing command line to /tmp/xJVYnt3Arm.dsk...
+Writing command line to /tmp/722bvt3Gjb.dsk...
 squish-pty bochs -q
 ========================================================================
                        Bochs x86 Emulator 2.5.1
@@ -8,7 +8,7 @@ squish-pty bochs -q
 ========================================================================
 Kernel command line: -q -f extract run sm-seq-random
 Pintos booting with 4,096 kB RAM...
-374 pages available in kernel pool.
+373 pages available in kernel pool.
 373 pages available in user pool.
 Calibrating timer...  204,600 loops/s.
 hd0:0: detected 1,008 sector (504 kB) disk, model "Generic 1234", serial "BXHD00011"
@@ -24,15 +24,19 @@ Executing 'sm-seq-random':
 (sm-seq-random) create "nibble"
 (sm-seq-random) open "nibble"
 (sm-seq-random) writing "nibble"
-(sm-seq-random) write 667 bytes at offset 0 in "nibble" failed: FAILED
-sm-seq-random: exit(1)
+(sm-seq-random) close "nibble"
+(sm-seq-random) open "nibble" for verification
+(sm-seq-random) verified contents of "nibble"
+(sm-seq-random) close "nibble"
+(sm-seq-random) end
+sm-seq-random: exit(0)
 Execution of 'sm-seq-random' complete.
-Timer: 374 ticks
-Thread: 30 idle ticks, 250 kernel ticks, 97 user ticks
+Timer: 416 ticks
+Thread: 30 idle ticks, 252 kernel ticks, 137 user ticks
 hd0:0: 0 reads, 0 writes
-hd0:1: 86 reads, 222 writes
+hd0:1: 117 reads, 242 writes
 hd1:0: 100 reads, 2 writes
-Console: 1062 characters output
+Console: 1168 characters output
 Keyboard: 0 keys pressed
 Exception: 0 page faults
 Powering off...

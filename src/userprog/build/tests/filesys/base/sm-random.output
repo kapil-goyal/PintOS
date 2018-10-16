@@ -1,5 +1,5 @@
 Copying tests/filesys/base/sm-random to scratch partition...
-Writing command line to /tmp/fuTjR6dk6y.dsk...
+Writing command line to /tmp/OjogrJQgmn.dsk...
 squish-pty bochs -q
 ========================================================================
                        Bochs x86 Emulator 2.5.1
@@ -8,7 +8,7 @@ squish-pty bochs -q
 ========================================================================
 Kernel command line: -q -f extract run sm-random
 Pintos booting with 4,096 kB RAM...
-374 pages available in kernel pool.
+373 pages available in kernel pool.
 373 pages available in user pool.
 Calibrating timer...  204,600 loops/s.
 hd0:0: detected 1,008 sector (504 kB) disk, model "Generic 1234", serial "BXHD00011"
@@ -24,15 +24,17 @@ Executing 'sm-random':
 (sm-random) create "bazzle"
 (sm-random) open "bazzle"
 (sm-random) write "bazzle" in random order
-(sm-random) write 13 bytes at offset 858 failed: FAILED
-sm-random: exit(1)
+(sm-random) read "bazzle" in random order
+(sm-random) close "bazzle"
+(sm-random) end
+sm-random: exit(0)
 Execution of 'sm-random' complete.
-Timer: 358 ticks
-Thread: 30 idle ticks, 247 kernel ticks, 84 user ticks
+Timer: 591 ticks
+Thread: 30 idle ticks, 249 kernel ticks, 315 user ticks
 hd0:0: 0 reads, 0 writes
-hd0:1: 87 reads, 218 writes
+hd0:1: 339 reads, 344 writes
 hd1:0: 102 reads, 2 writes
-Console: 1025 characters output
+Console: 1056 characters output
 Keyboard: 0 keys pressed
 Exception: 0 page faults
 Powering off...

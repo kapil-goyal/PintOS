@@ -1,6 +1,6 @@
 Copying tests/userprog/read-bad-ptr to scratch partition...
 Copying ../../tests/userprog/sample.txt to scratch partition...
-Writing command line to /tmp/sAfDtgMMta.dsk...
+Writing command line to /tmp/imlCClwYuG.dsk...
 squish-pty bochs -q
 ========================================================================
                        Bochs x86 Emulator 2.5.1
@@ -9,7 +9,7 @@ squish-pty bochs -q
 ========================================================================
 Kernel command line: -q -f extract run read-bad-ptr
 Pintos booting with 4,096 kB RAM...
-374 pages available in kernel pool.
+373 pages available in kernel pool.
 373 pages available in user pool.
 Calibrating timer...  204,600 loops/s.
 hd0:0: detected 1,008 sector (504 kB) disk, model "Generic 1234", serial "BXHD00011"
@@ -24,13 +24,14 @@ Erasing ustar archive...
 Executing 'read-bad-ptr':
 (read-bad-ptr) begin
 (read-bad-ptr) open "sample.txt"
+read-bad-ptr: exit(-1)
 Execution of 'read-bad-ptr' complete.
-Timer: 337 ticks
-Thread: 30 idle ticks, 274 kernel ticks, 36 user ticks
+Timer: 341 ticks
+Thread: 30 idle ticks, 274 kernel ticks, 40 user ticks
 hd0:0: 0 reads, 0 writes
 hd0:1: 90 reads, 204 writes
 hd1:0: 98 reads, 2 writes
-Console: 945 characters output
+Console: 968 characters output
 Keyboard: 0 keys pressed
 Exception: 0 page faults
 Powering off...

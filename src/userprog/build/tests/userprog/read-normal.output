@@ -1,6 +1,6 @@
 Copying tests/userprog/read-normal to scratch partition...
 Copying ../../tests/userprog/sample.txt to scratch partition...
-Writing command line to /tmp/72SeH8SzJj.dsk...
+Writing command line to /tmp/VchPRUbeoj.dsk...
 squish-pty bochs -q
 ========================================================================
                        Bochs x86 Emulator 2.5.1
@@ -9,7 +9,7 @@ squish-pty bochs -q
 ========================================================================
 Kernel command line: -q -f extract run read-normal
 Pintos booting with 4,096 kB RAM...
-374 pages available in kernel pool.
+373 pages available in kernel pool.
 373 pages available in user pool.
 Calibrating timer...  204,600 loops/s.
 hd0:0: detected 1,008 sector (504 kB) disk, model "Generic 1234", serial "BXHD00011"
@@ -24,13 +24,17 @@ Erasing ustar archive...
 Executing 'read-normal':
 (read-normal) begin
 (read-normal) open "sample.txt" for verification
+(read-normal) verified contents of "sample.txt"
+(read-normal) close "sample.txt"
+(read-normal) end
+read-normal: exit(0)
 Execution of 'read-normal' complete.
-Timer: 340 ticks
-Thread: 30 idle ticks, 274 kernel ticks, 39 user ticks
+Timer: 363 ticks
+Thread: 30 idle ticks, 279 kernel ticks, 57 user ticks
 hd0:0: 0 reads, 0 writes
-hd0:1: 97 reads, 206 writes
+hd0:1: 98 reads, 206 writes
 hd1:0: 99 reads, 2 writes
-Console: 956 characters output
+Console: 1076 characters output
 Keyboard: 0 keys pressed
 Exception: 0 page faults
 Powering off...

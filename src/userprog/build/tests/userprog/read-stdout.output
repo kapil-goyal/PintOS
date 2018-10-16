@@ -1,5 +1,5 @@
 Copying tests/userprog/read-stdout to scratch partition...
-Writing command line to /tmp/lgOzudV6lj.dsk...
+Writing command line to /tmp/Lx3rgJ52Vb.dsk...
 squish-pty bochs -q
 ========================================================================
                        Bochs x86 Emulator 2.5.1
@@ -8,7 +8,7 @@ squish-pty bochs -q
 ========================================================================
 Kernel command line: -q -f extract run read-stdout
 Pintos booting with 4,096 kB RAM...
-374 pages available in kernel pool.
+373 pages available in kernel pool.
 373 pages available in user pool.
 Calibrating timer...  204,600 loops/s.
 hd0:0: detected 1,008 sector (504 kB) disk, model "Generic 1234", serial "BXHD00011"
@@ -21,13 +21,15 @@ Putting 'read-stdout' into the file system...
 Erasing ustar archive...
 Executing 'read-stdout':
 (read-stdout) begin
+(read-stdout) end
+read-stdout: exit(0)
 Execution of 'read-stdout' complete.
-Timer: 300 ticks
-Thread: 30 idle ticks, 245 kernel ticks, 28 user ticks
+Timer: 307 ticks
+Thread: 30 idle ticks, 244 kernel ticks, 36 user ticks
 hd0:0: 0 reads, 0 writes
 hd0:1: 59 reads, 198 writes
 hd1:0: 96 reads, 2 writes
-Console: 862 characters output
+Console: 901 characters output
 Keyboard: 0 keys pressed
 Exception: 0 page faults
 Powering off...

@@ -1,5 +1,5 @@
 Copying tests/filesys/base/lg-seq-block to scratch partition...
-Writing command line to /tmp/jhvvgjitkh.dsk...
+Writing command line to /tmp/pj5p2921bN.dsk...
 squish-pty bochs -q
 ========================================================================
                        Bochs x86 Emulator 2.5.1
@@ -8,7 +8,7 @@ squish-pty bochs -q
 ========================================================================
 Kernel command line: -q -f extract run lg-seq-block
 Pintos booting with 4,096 kB RAM...
-374 pages available in kernel pool.
+373 pages available in kernel pool.
 373 pages available in user pool.
 Calibrating timer...  204,600 loops/s.
 hd0:0: detected 1,008 sector (504 kB) disk, model "Generic 1234", serial "BXHD00011"
@@ -24,15 +24,19 @@ Executing 'lg-seq-block':
 (lg-seq-block) create "noodle"
 (lg-seq-block) open "noodle"
 (lg-seq-block) writing "noodle"
-(lg-seq-block) write 513 bytes at offset 0 in "noodle" failed: FAILED
-lg-seq-block: exit(1)
+(lg-seq-block) close "noodle"
+(lg-seq-block) open "noodle" for verification
+(lg-seq-block) verified contents of "noodle"
+(lg-seq-block) close "noodle"
+(lg-seq-block) end
+lg-seq-block: exit(0)
 Execution of 'lg-seq-block' complete.
-Timer: 646 ticks
-Thread: 30 idle ticks, 280 kernel ticks, 339 user ticks
+Timer: 970 ticks
+Thread: 30 idle ticks, 283 kernel ticks, 661 user ticks
 hd0:0: 0 reads, 0 writes
-hd0:1: 86 reads, 358 writes
+hd0:1: 532 reads, 653 writes
 hd1:0: 100 reads, 2 writes
-Console: 1053 characters output
+Console: 1154 characters output
 Keyboard: 0 keys pressed
 Exception: 0 page faults
 Powering off...

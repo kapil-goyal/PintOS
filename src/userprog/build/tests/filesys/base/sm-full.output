@@ -1,5 +1,5 @@
 Copying tests/filesys/base/sm-full to scratch partition...
-Writing command line to /tmp/D2yITdUjrO.dsk...
+Writing command line to /tmp/jiBzYB1id0.dsk...
 squish-pty bochs -q
 ========================================================================
                        Bochs x86 Emulator 2.5.1
@@ -8,7 +8,7 @@ squish-pty bochs -q
 ========================================================================
 Kernel command line: -q -f extract run sm-full
 Pintos booting with 4,096 kB RAM...
-374 pages available in kernel pool.
+373 pages available in kernel pool.
 373 pages available in user pool.
 Calibrating timer...  204,600 loops/s.
 hd0:0: detected 1,008 sector (504 kB) disk, model "Generic 1234", serial "BXHD00011"
@@ -24,15 +24,19 @@ Executing 'sm-full':
 (sm-full) create "quux"
 (sm-full) open "quux"
 (sm-full) writing "quux"
-(sm-full) write 5678 bytes at offset 0 in "quux" failed: FAILED
-sm-full: exit(1)
+(sm-full) close "quux"
+(sm-full) open "quux" for verification
+(sm-full) verified contents of "quux"
+(sm-full) close "quux"
+(sm-full) end
+sm-full: exit(0)
 Execution of 'sm-full' complete.
-Timer: 366 ticks
-Thread: 30 idle ticks, 246 kernel ticks, 93 user ticks
+Timer: 394 ticks
+Thread: 30 idle ticks, 251 kernel ticks, 116 user ticks
 hd0:0: 0 reads, 0 writes
-hd0:1: 86 reads, 222 writes
+hd0:1: 103 reads, 234 writes
 hd1:0: 100 reads, 2 writes
-Console: 995 characters output
+Console: 1070 characters output
 Keyboard: 0 keys pressed
 Exception: 0 page faults
 Powering off...

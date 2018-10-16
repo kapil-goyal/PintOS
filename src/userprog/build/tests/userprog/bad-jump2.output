@@ -1,5 +1,5 @@
 Copying tests/userprog/bad-jump2 to scratch partition...
-Writing command line to /tmp/NxZDCxyqW2.dsk...
+Writing command line to /tmp/cg1JvgVhgX.dsk...
 squish-pty bochs -q
 ========================================================================
                        Bochs x86 Emulator 2.5.1
@@ -8,7 +8,7 @@ squish-pty bochs -q
 ========================================================================
 Kernel command line: -q -f extract run bad-jump2
 Pintos booting with 4,096 kB RAM...
-374 pages available in kernel pool.
+373 pages available in kernel pool.
 373 pages available in user pool.
 Calibrating timer...  204,600 loops/s.
 hd0:0: detected 1,008 sector (504 kB) disk, model "Generic 1234", serial "BXHD00011"

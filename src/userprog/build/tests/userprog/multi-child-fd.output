@@ -1,7 +1,7 @@
 Copying tests/userprog/multi-child-fd to scratch partition...
 Copying ../../tests/userprog/sample.txt to scratch partition...
 Copying tests/userprog/child-close to scratch partition...
-Writing command line to /tmp/PFedW5pWql.dsk...
+Writing command line to /tmp/xw1zYBbwvH.dsk...
 squish-pty bochs -q
 ========================================================================
                        Bochs x86 Emulator 2.5.1
@@ -10,7 +10,7 @@ squish-pty bochs -q
 ========================================================================
 Kernel command line: -q -f extract run multi-child-fd
 Pintos booting with 4,096 kB RAM...
-374 pages available in kernel pool.
+373 pages available in kernel pool.
 373 pages available in user pool.
 Calibrating timer...  204,600 loops/s.
 hd0:0: detected 1,008 sector (504 kB) disk, model "Generic 1234", serial "BXHD00011"
@@ -26,13 +26,20 @@ Erasing ustar archive...
 Executing 'multi-child-fd':
 (multi-child-fd) begin
 (multi-child-fd) open "sample.txt"
+(child-close) begin
+(child-close) end
+child-close: exit(0)
+(multi-child-fd) wait(exec()) = -1
+(multi-child-fd) verified contents of "sample.txt"
+(multi-child-fd) end
+multi-child-fd: exit(0)
 Execution of 'multi-child-fd' complete.
-Timer: 440 ticks
-Thread: 30 idle ticks, 376 kernel ticks, 37 user ticks
+Timer: 526 ticks
+Thread: 30 idle ticks, 400 kernel ticks, 99 user ticks
 hd0:0: 0 reads, 0 writes
-hd0:1: 127 reads, 422 writes
+hd0:1: 169 reads, 422 writes
 hd1:0: 206 reads, 2 writes
-Console: 1005 characters output
+Console: 1195 characters output
 Keyboard: 0 keys pressed
 Exception: 0 page faults
 Powering off...
