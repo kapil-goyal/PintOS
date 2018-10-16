@@ -9,6 +9,7 @@
 #include "filesys/file.h"
 #include "threads/init.h"
 #include <string.h>
+#include "threads/synch.h"
 
 static void syscall_handler (struct intr_frame *);
 
@@ -19,9 +20,6 @@ typedef struct action{
   int (*function) ();
   void (*func) ();
 }action;
-
-
-
 
 static void validate (const int *ptr)
 {
@@ -38,8 +36,6 @@ is_valid_fd (int fd)
   return fd >= 0 && fd < MAX_FILES; 
 }
 
-
-
 static void halt(){
   power_off();
 }
@@ -54,19 +50,19 @@ void exit (int status){
 
 
 static int exec (const char *cmd_line){
+  validate(cmd_line);
   thread_exit();
+  return -1;
 }
 
 
 static int wait (int pid){
-  thread_exit();
+
+  return -1;
 }
 
 
 static int create (const char *file, unsigned initial_size){
-	// if(file==NULL){
-	// 	exit(-1);
-	// }
 	validate(file);
   int status = filesys_create (file, initial_size);
   return status;
@@ -74,7 +70,6 @@ static int create (const char *file, unsigned initial_size){
 
 
 static int remove (const char *file){
-
 	validate(file);
 	int status = filesys_remove(file);
 	return status;
@@ -83,7 +78,6 @@ static int remove (const char *file){
 
 static int open (const char *file){
   validate(file);
-
   struct file* f = filesys_open (file);
   if(f==NULL){
   	return -1;
@@ -122,29 +116,59 @@ static int filesize (int fd){
 
 
 static int read (int fd, void *buffer, unsigned size){
-  thread_exit();
+
+  validate(buffer);
+  validate(buffer+size);
+
+  struct file *f;
+  int ret=-1;
+
+  if(fd==0)
+  {
+    int i;
+    for(i=0;i<size;i++)
+    {
+      *(uint8_t *)(buffer + i) = input_getc ();
+    }
+    ret = size;
+  }
+  else if(fd > 1 && fd<128 ) 
+  {
+      f = thread_current()->files[fd];
+      if (f)
+        ret = file_read (f, buffer, size);
+  }
+
+  return ret;
 }
 
 static int write (int fd, const void *buffer, unsigned size){
+ 
+ struct file *f;  
   int ret;
   ret = 0;
-  // if (!is_user_vaddr (buffer) || !is_user_vaddr (buffer + size))
-  //   {
-  //     exit (-1);
-  //   }
+  
+  validate(buffer);
+  validate(buffer+size);
+
   if (fd == 1){
     ret = size; 
     putbuf ((char *)buffer, size);
   }
-  
-  return ret;
+  else if(fd > 1 && fd<128 ) 
+  {
+    f = thread_current()->files[fd];
+    if (f)
+      ret = file_write (f, buffer, size);
+  }
+
+  return ret;  
 }
 
 
 static void seek (int fd, unsigned position){
   
   struct thread *t = thread_current ();
-
   if (is_valid_fd (fd) && t->files[fd] != NULL)
   {
     file_seek (t->files[fd], position);
@@ -177,7 +201,6 @@ static void close (int fd){
   }
 }
 
-
 static const action actions[]={
   {0, NULL, halt},
   {1, NULL, exit},
@@ -207,22 +230,12 @@ syscall_handler (struct intr_frame *f)
 
   validate(esp);
 
-	// if(!is_user_vaddr(esp)){
-	// 	exit(-1);
-	// }
-
   int syscall_num = *esp;
   esp+= sizeof(void);
-
-  
 
   if(syscall_num>=0 && syscall_num<TOTAL_ACTIONS){
     action sys_to_be_called = actions[syscall_num]; 
     int arg_num = sys_to_be_called.argc;
-
-    // if(!is_user_vaddr((void *)(esp+arg_num))){
-    //   exit(-1);
-    // }
 
     validate(esp+arg_num);
 
@@ -259,7 +272,4 @@ syscall_handler (struct intr_frame *f)
 	    esp += arg_num;
 	  }
 	}
-
-    // printf ("system call!\n");
-    // thread_exit ();
 }

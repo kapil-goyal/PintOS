@@ -81,3 +81,45 @@ Short Description of work: Finalised code and fixed bugs and log file updated
 Duration of session: 1 hour 10 minutes
 Name of files affected: process.c
 Estimated lines of code affected: 3
+
+Current date and time to update log: 2018-10-01. 18.53
+Members present: KP, SK, SK, SB, IPS
+Short Description of work: read the assignment and discussion
+Duration of session: 2 hour 53 minutes
+Name of files affected: ---
+Estimated lines of code affected: ---
+
+Current date and time to update log: 2018-10-02. 23:51
+Members present: KP, SK, SK, SB, IPS
+Short Description of work: Syscall Handler Function
+Duration of session: 5 hour 2 minutes
+Name of files affected: syscall.c
+Estimated lines of code affected: 100
+
+Current date and time to update log: 2018-10-03. 11:47
+Members present: KP, SK, SK, SB, IPS
+Short Description of work: Halt ,exit , remove and validate Functions implement
+Duration of session: 3 hour 00 minutes
+Name of files affected: syscall.c
+Estimated lines of code affected:  50
+
+Current date and time to update log: 2018-10-03. 16:17
+Members present: KP, SK, SK, SB, IPS
+Short Description of work: write,filesize,open Functions implement
+Duration of session: 2 hour 48 minutes
+Name of files affected: syscall.c
+Estimated lines of code affected:  50
+
+Current date and time to update log: 2018-10-03. 22:40
+Members present: KP, SK, SK, SB, IPS
+Short Description of work: seek, tell,close ans process_wait Functions implement
+Duration of session: 2 hour 03 minutes
+Name of files affected: syscall.c, thread.c and process.c
+Estimated lines of code affected:  50
+
+Current date and time to update log: 2018-10-08. 19:45
+Members present: KP, SK, SK, SB, IPS
+Short Description of work: Create ,read,write Functions implement
+Duration of session: 2 hour 00 minutes
+Name of files affected: syscall.c
+Estimated lines of code affected:  40
