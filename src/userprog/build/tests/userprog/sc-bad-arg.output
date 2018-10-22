@@ -1,5 +1,5 @@
 Copying tests/userprog/sc-bad-arg to scratch partition...
-Writing command line to /tmp/hNOzYj8mF2.dsk...
+Writing command line to /tmp/bSRGqR78iQ.dsk...
 squish-pty bochs -q
 ========================================================================
                        Bochs x86 Emulator 2.5.1
@@ -23,8 +23,8 @@ Executing 'sc-bad-arg':
 (sc-bad-arg) begin
 sc-bad-arg: exit(-1)
 Execution of 'sc-bad-arg' complete.
-Timer: 303 ticks
-Thread: 30 idle ticks, 245 kernel ticks, 31 user ticks
+Timer: 292 ticks
+Thread: 30 idle ticks, 234 kernel ticks, 31 user ticks
 hd0:0: 0 reads, 0 writes
 hd0:1: 59 reads, 198 writes
 hd1:0: 96 reads, 2 writes

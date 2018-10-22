@@ -1,5 +1,5 @@
 Copying tests/userprog/create-exists to scratch partition...
-Writing command line to /tmp/qOMzEcugVZ.dsk...
+Writing command line to /tmp/gOL5UyMCqm.dsk...
 squish-pty bochs -q
 ========================================================================
                        Bochs x86 Emulator 2.5.1
@@ -29,8 +29,8 @@ Executing 'create-exists':
 (create-exists) end
 create-exists: exit(0)
 Execution of 'create-exists' complete.
-Timer: 406 ticks
-Thread: 30 idle ticks, 246 kernel ticks, 133 user ticks
+Timer: 395 ticks
+Thread: 30 idle ticks, 235 kernel ticks, 133 user ticks
 hd0:0: 0 reads, 0 writes
 hd0:1: 142 reads, 218 writes
 hd1:0: 96 reads, 2 writes

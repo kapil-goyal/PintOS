@@ -1,5 +1,5 @@
 Copying tests/userprog/args-dbl-space to scratch partition...
-Writing command line to /tmp/JTSBNLm8fn.dsk...
+Writing command line to /tmp/TpTDnqwZBk.dsk...
 squish-pty bochs -q
 ========================================================================
                        Bochs x86 Emulator 2.5.1
@@ -29,8 +29,8 @@ Executing 'args-dbl-space two  spaces!':
 (args) end
 args-dbl-space: exit(0)
 Execution of 'args-dbl-space two  spaces!' complete.
-Timer: 330 ticks
-Thread: 30 idle ticks, 250 kernel ticks, 53 user ticks
+Timer: 319 ticks
+Thread: 30 idle ticks, 243 kernel ticks, 53 user ticks
 hd0:0: 0 reads, 0 writes
 hd0:1: 59 reads, 196 writes
 hd1:0: 95 reads, 2 writes

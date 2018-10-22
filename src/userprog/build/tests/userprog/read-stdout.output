@@ -1,5 +1,5 @@
 Copying tests/userprog/read-stdout to scratch partition...
-Writing command line to /tmp/dx0TM2Pcx9.dsk...
+Writing command line to /tmp/jINqqub87b.dsk...
 squish-pty bochs -q
 ========================================================================
                        Bochs x86 Emulator 2.5.1
@@ -24,8 +24,8 @@ Executing 'read-stdout':
 (read-stdout) end
 read-stdout: exit(0)
 Execution of 'read-stdout' complete.
-Timer: 306 ticks
-Thread: 30 idle ticks, 245 kernel ticks, 35 user ticks
+Timer: 291 ticks
+Thread: 30 idle ticks, 235 kernel ticks, 34 user ticks
 hd0:0: 0 reads, 0 writes
 hd0:1: 59 reads, 198 writes
 hd1:0: 96 reads, 2 writes

@@ -1,6 +1,6 @@
 Copying tests/userprog/open-boundary to scratch partition...
 Copying ../../tests/userprog/sample.txt to scratch partition...
-Writing command line to /tmp/KmCjZAYCzv.dsk...
+Writing command line to /tmp/mdfnIV7e2o.dsk...
 squish-pty bochs -q
 ========================================================================
                        Bochs x86 Emulator 2.5.1
@@ -27,8 +27,8 @@ Executing 'open-boundary':
 (open-boundary) end
 open-boundary: exit(0)
 Execution of 'open-boundary' complete.
-Timer: 358 ticks
-Thread: 30 idle ticks, 282 kernel ticks, 49 user ticks
+Timer: 343 ticks
+Thread: 30 idle ticks, 267 kernel ticks, 49 user ticks
 hd0:0: 0 reads, 0 writes
 hd0:1: 91 reads, 208 writes
 hd1:0: 100 reads, 2 writes

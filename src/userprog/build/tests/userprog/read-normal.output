@@ -1,6 +1,6 @@
 Copying tests/userprog/read-normal to scratch partition...
 Copying ../../tests/userprog/sample.txt to scratch partition...
-Writing command line to /tmp/TmC2F3nsAr.dsk...
+Writing command line to /tmp/MUJeRNhNIm.dsk...
 squish-pty bochs -q
 ========================================================================
                        Bochs x86 Emulator 2.5.1
@@ -29,8 +29,8 @@ Executing 'read-normal':
 (read-normal) end
 read-normal: exit(0)
 Execution of 'read-normal' complete.
-Timer: 364 ticks
-Thread: 30 idle ticks, 277 kernel ticks, 60 user ticks
+Timer: 352 ticks
+Thread: 30 idle ticks, 265 kernel ticks, 60 user ticks
 hd0:0: 0 reads, 0 writes
 hd0:1: 98 reads, 206 writes
 hd1:0: 99 reads, 2 writes

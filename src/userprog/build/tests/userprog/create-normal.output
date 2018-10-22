@@ -1,5 +1,5 @@
 Copying tests/userprog/create-normal to scratch partition...
-Writing command line to /tmp/X2PCeqPlui.dsk...
+Writing command line to /tmp/jDk0ZyS1ht.dsk...
 squish-pty bochs -q
 ========================================================================
                        Bochs x86 Emulator 2.5.1
@@ -25,8 +25,8 @@ Executing 'create-normal':
 (create-normal) end
 create-normal: exit(0)
 Execution of 'create-normal' complete.
-Timer: 331 ticks
-Thread: 30 idle ticks, 247 kernel ticks, 57 user ticks
+Timer: 319 ticks
+Thread: 30 idle ticks, 235 kernel ticks, 57 user ticks
 hd0:0: 0 reads, 0 writes
 hd0:1: 81 reads, 202 writes
 hd1:0: 96 reads, 2 writes

@@ -1,6 +1,6 @@
 Copying tests/userprog/open-normal to scratch partition...
 Copying ../../tests/userprog/sample.txt to scratch partition...
-Writing command line to /tmp/yprEfxSSFb.dsk...
+Writing command line to /tmp/jYqZVHqQdO.dsk...
 squish-pty bochs -q
 ========================================================================
                        Bochs x86 Emulator 2.5.1
@@ -26,8 +26,8 @@ Executing 'open-normal':
 (open-normal) end
 open-normal: exit(0)
 Execution of 'open-normal' complete.
-Timer: 343 ticks
-Thread: 30 idle ticks, 276 kernel ticks, 40 user ticks
+Timer: 327 ticks
+Thread: 30 idle ticks, 265 kernel ticks, 39 user ticks
 hd0:0: 0 reads, 0 writes
 hd0:1: 90 reads, 204 writes
 hd1:0: 98 reads, 2 writes
