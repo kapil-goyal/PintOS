@@ -1,5 +1,5 @@
 Copying tests/userprog/args-single to scratch partition...
-Writing command line to /tmp/OlUFQmzK6B.dsk...
+Writing command line to /tmp/uDFk5iCkMh.dsk...
 squish-pty bochs -q
 ========================================================================
                        Bochs x86 Emulator 2.5.1
@@ -8,8 +8,8 @@ squish-pty bochs -q
 ========================================================================
 Kernel command line: -q -f extract run 'args-single onearg'
 Pintos booting with 4,096 kB RAM...
-373 pages available in kernel pool.
-373 pages available in user pool.
+370 pages available in kernel pool.
+370 pages available in user pool.
 Calibrating timer...  204,600 loops/s.
 hd0:0: detected 1,008 sector (504 kB) disk, model "Generic 1234", serial "BXHD00011"
 hd0:1: detected 4,032 sector (1 MB) disk, model "Generic 1234", serial "BXHD00012"
@@ -29,7 +29,7 @@ Executing 'args-single onearg':
 args-single: exit(0)
 Execution of 'args-single onearg' complete.
 Timer: 322 ticks
-Thread: 30 idle ticks, 248 kernel ticks, 48 user ticks
+Thread: 30 idle ticks, 248 kernel ticks, 47 user ticks
 hd0:0: 0 reads, 0 writes
 hd0:1: 59 reads, 196 writes
 hd1:0: 95 reads, 2 writes

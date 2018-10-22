@@ -1,4 +1,3 @@
-D/bochs////
 D/devices////
 D/examples////
 D/filesys////
@@ -9,11 +8,10 @@ D/threads////
 D/userprog////
 D/utils////
 D/vm////
-D/vmware////
-/.cvsignore/1.1.1.1/Mon Oct  1 16:44:04 2018//
-/LICENSE/1.1.1.1/Mon Oct  1 16:44:05 2018//
-/Make.config/1.1.1.1/Mon Oct  1 16:44:04 2018//
-/Makefile/1.1.1.1/Mon Oct  1 16:44:04 2018//
-/Makefile.build/1.1.1.1/Mon Oct  1 16:44:04 2018//
-/Makefile.kernel/1.1.1.1/Mon Oct  1 16:44:04 2018//
-/Makefile.userprog/1.1.1.1/Mon Oct  1 16:44:05 2018//
+/.cvsignore/1.1.1.1/Tue Aug 14 13:11:08 2018//D2018.10.22.18.30.00
+/LICENSE/1.1.1.1/Tue Aug 14 13:11:08 2018//D2018.10.22.18.30.00
+/Make.config/1.1.1.1/Tue Aug 14 13:11:08 2018//D2018.10.22.18.30.00
+/Makefile/1.1.1.1/Tue Aug 14 13:11:08 2018//D2018.10.22.18.30.00
+/Makefile.build/1.1.1.1/Tue Aug 14 13:11:08 2018//D2018.10.22.18.30.00
+/Makefile.kernel/1.1.1.1/Tue Aug 14 13:11:08 2018//D2018.10.22.18.30.00
+/Makefile.userprog/1.1.1.1/Tue Aug 14 13:11:08 2018//D2018.10.22.18.30.00

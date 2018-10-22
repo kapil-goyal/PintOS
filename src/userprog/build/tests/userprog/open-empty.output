@@ -1,5 +1,5 @@
 Copying tests/userprog/open-empty to scratch partition...
-Writing command line to /tmp/dYST1Usf65.dsk...
+Writing command line to /tmp/MrlwKTdfj4.dsk...
 squish-pty bochs -q
 ========================================================================
                        Bochs x86 Emulator 2.5.1
@@ -8,8 +8,8 @@ squish-pty bochs -q
 ========================================================================
 Kernel command line: -q -f extract run open-empty
 Pintos booting with 4,096 kB RAM...
-373 pages available in kernel pool.
-373 pages available in user pool.
+370 pages available in kernel pool.
+370 pages available in user pool.
 Calibrating timer...  204,600 loops/s.
 hd0:0: detected 1,008 sector (504 kB) disk, model "Generic 1234", serial "BXHD00011"
 hd0:1: detected 4,032 sector (1 MB) disk, model "Generic 1234", serial "BXHD00012"
@@ -24,8 +24,8 @@ Executing 'open-empty':
 (open-empty) end
 open-empty: exit(0)
 Execution of 'open-empty' complete.
-Timer: 319 ticks
-Thread: 30 idle ticks, 245 kernel ticks, 47 user ticks
+Timer: 318 ticks
+Thread: 30 idle ticks, 245 kernel ticks, 46 user ticks
 hd0:0: 0 reads, 0 writes
 hd0:1: 76 reads, 198 writes
 hd1:0: 96 reads, 2 writes

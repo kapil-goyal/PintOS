@@ -105,8 +105,9 @@ struct thread
     struct lock *seeking;               /* seeking lock for the current thread*/
     struct semaphore *seeking_sema;		/* seeking semaphore for the current thread*/
     struct semaphore loaded;
-    struct semaphore completed;
-    bool load_complete;
+    struct semaphore exited;
+    struct semaphore exit_ack;
+
 #ifdef USERPROG
     /* Owned by userprog/process.c. */
     uint32_t *pagedir;                  /* Page directory. */
@@ -117,6 +118,7 @@ struct thread
     unsigned magic;                     /* Detects stack overflow. */
 
     struct file *files[MAX_FILES];
+    struct file* executable;
 
   };
 
@@ -124,7 +126,10 @@ struct thread
    If true, use multi-level feedback queue scheduler.
    Controlled by kernel command-line option "-o mlfqs". */
 
-static struct thread* tid_arr[100] = {0};
+extern struct thread* tid_arr[2040];
+extern int tid_parent[2040];
+extern bool tid_arr_loaded[2040];
+extern int tid_arr_exit_status[2040];
 
 extern bool thread_mlfqs;
 
@@ -167,8 +172,5 @@ void thread_set_priority_temporarily_up(void);
 void thread_priority_restore(void);
 void thread_block_till(int64_t);
 void thread_set_next_wakeup(void);
-
-bool check_child_status(tid_t);
-struct thread* get_child_thread_from_id(tid_t);
 
 #endif /* threads/thread.h */

@@ -1,6 +1,6 @@
 Copying tests/userprog/exec-once to scratch partition...
 Copying tests/userprog/child-simple to scratch partition...
-Writing command line to /tmp/f0jgwtXuOE.dsk...
+Writing command line to /tmp/fruvl733bS.dsk...
 squish-pty bochs -q
 ========================================================================
                        Bochs x86 Emulator 2.5.1
@@ -9,8 +9,8 @@ squish-pty bochs -q
 ========================================================================
 Kernel command line: -q -f extract run exec-once
 Pintos booting with 4,096 kB RAM...
-373 pages available in kernel pool.
-373 pages available in user pool.
+370 pages available in kernel pool.
+370 pages available in user pool.
 Calibrating timer...  204,600 loops/s.
 hd0:0: detected 1,008 sector (504 kB) disk, model "Generic 1234", serial "BXHD00011"
 hd0:1: detected 4,032 sector (1 MB) disk, model "Generic 1234", serial "BXHD00012"
@@ -28,8 +28,8 @@ child-simple: exit(81)
 (exec-once) end
 exec-once: exit(0)
 Execution of 'exec-once' complete.
-Timer: 455 ticks
-Thread: 30 idle ticks, 357 kernel ticks, 71 user ticks
+Timer: 456 ticks
+Thread: 30 idle ticks, 358 kernel ticks, 71 user ticks
 hd0:0: 0 reads, 0 writes
 hd0:1: 122 reads, 388 writes
 hd1:0: 190 reads, 2 writes

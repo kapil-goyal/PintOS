@@ -1,5 +1,5 @@
 Copying tests/filesys/base/lg-full to scratch partition...
-Writing command line to /tmp/dy86JgnrZx.dsk...
+Writing command line to /tmp/NrVtKEq6Vh.dsk...
 squish-pty bochs -q
 ========================================================================
                        Bochs x86 Emulator 2.5.1
@@ -8,8 +8,8 @@ squish-pty bochs -q
 ========================================================================
 Kernel command line: -q -f extract run lg-full
 Pintos booting with 4,096 kB RAM...
-373 pages available in kernel pool.
-373 pages available in user pool.
+370 pages available in kernel pool.
+370 pages available in user pool.
 Calibrating timer...  204,600 loops/s.
 hd0:0: detected 1,008 sector (504 kB) disk, model "Generic 1234", serial "BXHD00011"
 hd0:1: detected 4,032 sector (1 MB) disk, model "Generic 1234", serial "BXHD00012"
@@ -31,8 +31,8 @@ Executing 'lg-full':
 (lg-full) end
 lg-full: exit(0)
 Execution of 'lg-full' complete.
-Timer: 748 ticks
-Thread: 30 idle ticks, 281 kernel ticks, 440 user ticks
+Timer: 758 ticks
+Thread: 30 idle ticks, 279 kernel ticks, 452 user ticks
 hd0:0: 0 reads, 0 writes
 hd0:1: 239 reads, 506 writes
 hd1:0: 100 reads, 2 writes

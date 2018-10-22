@@ -18,25 +18,14 @@
 #include "threads/thread.h"
 #include "threads/vaddr.h"
 #include "threads/synch.h"
+#include "threads/malloc.h"
 
 const int WORD_SIZE = 4; /* Number of bytes per word */
 
+bool tid_arr_loaded[2040];
+
 static thread_func start_process NO_RETURN;
 static bool load (const char *cmdline, void (**eip) (void), void **esp);
-
-void
-test_stack (int *t)
-{
-  int i;
-  int argc = t[1];
-  char ** argv;
-   argv = (char **) t[2];
-  printf("ARGC:%d ARGV:%x\n", argc, (unsigned int)argv);
-  for (i = 0; i < argc; i++)
-    printf("Argv[%d] = %x pointing at %s\n",
-           i, (unsigned int)argv[i], argv[i]);
-}
-
 
 /* Starts a new thread running a user program loaded from
    FILENAME.  The new thread may be scheduled (and may even exit)
@@ -56,7 +45,7 @@ process_execute (const char *file_name)
   strlcpy (fn_copy, file_name, PGSIZE);
 
   /* Create a new thread to execute FILE_NAME. */
-  tid = thread_create (file_name, PRI_DEFAULT, start_process, fn_copy);
+  tid = thread_create (file_name, PRI_MAX, start_process, fn_copy);
   if (tid == TID_ERROR)
     palloc_free_page (fn_copy); 
   return tid;
@@ -78,15 +67,16 @@ start_process (void *file_name_)
   if_.eflags = FLAG_IF | FLAG_MBS;
   success = load (file_name, &if_.eip, &if_.esp);
 
+  struct thread* cur = thread_current();
   /* If load failed, quit. */
   palloc_free_page (file_name);
   if (!success) {
+    tid_arr_loaded[cur->tid] = 0;
     sema_up(&thread_current()->loaded);
-    sema_down(&thread_current()->completed);
     thread_exit ();
   }
     
-  thread_current()->load_complete = 1;
+  tid_arr_loaded[cur->tid] = 1;
   sema_up(&thread_current()->loaded);
 
   /* Start the user process by simulating a return from an
@@ -111,10 +101,22 @@ start_process (void *file_name_)
 int
 process_wait (tid_t child_tid) 
 {
-  while(check_child_status(child_tid)){
-    thread_yield();
-  }
-  return -1;
+  
+  if (child_tid < 0 || child_tid >= 2040)
+    return -1;
+
+  struct thread* child = tid_arr[child_tid];
+
+  if (tid_arr_exit_status[child_tid] != -1)
+    sema_down (&child->exited);
+
+  if (tid_parent[child_tid] != thread_current()->tid)
+    return -1;
+
+  sema_up(&child->exit_ack);
+  int ret = tid_arr_exit_status[child_tid];
+  tid_arr_exit_status[child_tid] = -1;
+  return ret;
 }
 
 /* Free the current process's resources. */
@@ -243,7 +245,10 @@ load (const char *cmd_line_input, void (**eip) (void), void **esp)
 
    char *args, *file_name;
   /* Separate file_name and args */
-  file_name = strtok_r (cmd_line_input, " ", &args);
+
+  char *cmd_line_input_ = (char *) malloc ((strlen(cmd_line_input)+1) * sizeof (char));
+  cmd_line_input_ = memcpy (cmd_line_input_, cmd_line_input, (strlen(cmd_line_input)+1));
+  file_name = strtok_r (cmd_line_input_, " ", &args);
 
   /* Allocate and activate page directory. */
   t->pagedir = pagedir_create ();
@@ -258,6 +263,9 @@ load (const char *cmd_line_input, void (**eip) (void), void **esp)
       printf ("load: %s: open failed\n", file_name);
       goto done; 
     }
+
+  file_deny_write(file);
+  t->executable=file; 
 
   /* Read and verify executable header. */
   if (file_read (file, &ehdr, sizeof ehdr) != sizeof ehdr
@@ -334,7 +342,6 @@ load (const char *cmd_line_input, void (**eip) (void), void **esp)
   /* Set up stack. */
   if (!setup_stack (esp , file_name, args ))
     goto done;
-  // test_stack (*esp);
 
   /* Start address. */
   *eip = (void (*) (void)) ehdr.e_entry;
@@ -343,7 +350,7 @@ load (const char *cmd_line_input, void (**eip) (void), void **esp)
 
  done:
   /* We arrive here whether the load is successful or not. */
-  file_close (file);
+  // file_close (file);
   return success;
 }
 

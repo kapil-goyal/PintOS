@@ -9,4 +9,4 @@ userprog/process.o: ../../userprog/process.c ../../userprog/process.h \
   ../../filesys/file.h ../../filesys/off_t.h ../../filesys/filesys.h \
   ../../threads/flags.h ../../threads/init.h ../../threads/interrupt.h \
   ../../threads/palloc.h ../../threads/vaddr.h ../../threads/loader.h \
-  ../../threads/synch.h
+  ../../threads/synch.h ../../threads/malloc.h

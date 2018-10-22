@@ -160,3 +160,111 @@ commit message:	"UP-04 Exec completed"
 commit tag: "up04exec"
 time: Wed Oct 17 02:12:43 IST 2018
 ====================================================================================================
+Start date and time : 2018-10-17. 23:59 IST 
+Members present: KP, SK, SK, SB, IPS
+Duration of session: 5 hours
+----------------------------------------------------------------------------------------------
+File Affected: 								pintos/src/userprog/process.c
+Function Modified / Implemented:			process_wait()
+Short Description:							process_wait() implemented alongwith handling of various cases
+Estimated no. of lines affected:			15
+----------------------------------------------------------------------------------------------
+File Affected: 								pintos/src/userprog/syscall.c
+Function Modified / Implemented:			exit(), wait()
+Short Description:							exit status of a thread is saved and wait is implemented.
+Estimated no. of lines affected:			20
+----------------------------------------------------------------------------------------------
+File Affected: 								pintos/src/threads/thread.c
+Function Modified / Implemented:			thread_create()
+Short Description:							tid_arr[] and tid_parent[] arrays defined
+Estimated no. of lines affected:			5
+----------------------------------------------------------------------------------------------
+File Affected: 								pintos/src/threads/thread.h
+Function Modified / Implemented:			
+Short Description:							extern struct thread* tid_arr[1500];
+											extern int tid_parent[1500];
+											extern bool tid_arr_loaded[1500];
+											extern int tid_arr_exit_status[1500];
+Estimated no. of lines affected:			4
+
+----------------------------------------------------------------------------------------------
+Total no. of lines changed:					40
+Make check results:							Fail: 3+1+1+1
+											Pass: 53+6+10+1
+											6 out of 76 failed
+											
+commit message:	"UP-04 Wait completed"
+commit tag: "up04wait"
+time: Thu Oct 18 22:26:30 IST 2018
+====================================================================================================
+Start date and time : 2018-10-18. 22:04 IST 
+Members present: KP, SK, SK, SB, IPS
+Duration of session: 8 hours
+----------------------------------------------------------------------------------------------
+
+File Affected: 								pintos/src/userprog/process.c
+Function Modified / Implemented:			process_wait(), start_process()
+Short Description:							process_wait() improved and file_deny_write added in start process
+Estimated no. of lines affected:			5
+----------------------------------------------------------------------------------------------
+File Affected: 								pintos/src/userprog/syscall.c
+Function Modified / Implemented:			exit(), syscall_init()
+Short Description:							semaphore added in exit() and tid_arr_exit_status[] initialized
+Estimated no. of lines affected:			10
+----------------------------------------------------------------------------------------------
+File Affected: 								pintos/src/threads/thread.c
+Function Modified / Implemented:			init_thread()
+Short Description:							semaphore exited and executable initialized
+Estimated no. of lines affected:			2
+----------------------------------------------------------------------------------------------
+File Affected: 								pintos/src/threads/thread.h
+Function Modified / Implemented:			
+Short Description:							struct semaphore exited;
+											struct file* executable;
+Estimated no. of lines affected:			2
+
+----------------------------------------------------------------------------------------------
+Total no. of lines changed:					19
+Make check results:							Fail: 1
+											Pass: 75
+											1 out of 76 failed
+											
+commit message:	"UP-04 deny added"
+commit tag: "up04deny_log"
+time: Thu Oct 19 06:40:30 IST 2018
+====================================================================================================
+Start date and time : 2018-10-20. 21:09 IST 
+Members present: KP, SK, SK, SB, IPS
+Duration of session: 3 hours 30 minutes
+----------------------------------------------------------------------------------------------
+
+File Affected: 								pintos/src/userprog/process.c
+Function Modified / Implemented:			process_wait()
+Short Description:							process_wait() improved.
+Estimated no. of lines affected:			3
+----------------------------------------------------------------------------------------------
+File Affected: 								pintos/src/userprog/syscall.c
+Function Modified / Implemented:			exit()
+Short Description:							semaphore exit_ack added in exit()
+Estimated no. of lines affected:			2
+----------------------------------------------------------------------------------------------
+File Affected: 								pintos/src/threads/thread.c
+Function Modified / Implemented:			init_thread()
+Short Description:							semaphore exit_ack initialized
+Estimated no. of lines affected:			2
+----------------------------------------------------------------------------------------------
+File Affected: 								pintos/src/threads/thread.h
+Function Modified / Implemented:			
+Short Description:							struct semaphore exit_ack;
+Estimated no. of lines affected:			2
+
+----------------------------------------------------------------------------------------------
+Total no. of lines changed:					9
+Make check results:							Fail: 0
+											Pass: 76
+											All 76 Passed
+											
+commit message:	"UP-04 completed"
+commit tag: "up04done"
+time: Sat Sat Oct 20 22:47:41 2018
+====================================================================================================

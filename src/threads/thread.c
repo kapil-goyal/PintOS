@@ -1,4 +1,4 @@
-// #include "threads/thread.h"
+#include "threads/thread.h"
 #include <debug.h>
 #include <stddef.h>
 #include <random.h>
@@ -25,6 +25,9 @@
 /* List of processes in THREAD_READY state, that is, processes
    that are ready to run but not actually running. */
 static struct list ready_list;
+
+struct thread* tid_arr[2040];
+int tid_parent[2040];
 
 /* Next wake up time for a thread to unblock*/
 static int64_t next_wakeup_time;
@@ -255,6 +258,7 @@ thread_create (const char *name, int priority,
   tid = t->tid = allocate_tid ();
 
   tid_arr[tid] = t;
+  tid_parent[tid] = thread_current()->tid;
 
   /* Prepare thread for first run by initializing its stack.
      Do this atomically so intermediate values for the 'stack' 
@@ -280,7 +284,6 @@ thread_create (const char *name, int priority,
 
   /* Add to run queue. */
   thread_unblock (t);
-  // thread_yield(); // important
   if(t->priority > thread_current()->priority){
     thread_yield();
   }
@@ -303,8 +306,6 @@ thread_block (void)
   schedule ();
 }
 
-
-// Comparator function to sort ready queue threads according to their original priority.
 static bool comp(const struct list_elem *a, const struct list_elem *b, void *aux UNUSED) {
   struct thread *ta = list_entry(a, struct thread, elem);
   struct thread *tb = list_entry(b, struct thread, elem);
@@ -701,10 +702,14 @@ init_thread (struct thread *t, const char *name, int priority)
   list_init(&t->holding_locks);
   list_push_back (&all_list, &t->allelem);
 
-  t->load_complete=0;
   sema_init(&t->loaded, 0);
-  sema_init(&t->completed, 0);
-  
+  sema_init(&t->exited, 0);
+  sema_init(&t->exit_ack, 0);
+  int i;
+  for (i = 0; i < MAX_FILES; i++) {
+    t->files[i] = NULL;
+  } 
+  t->executable=NULL;
 }
 
 /* Allocates a SIZE-byte frame at the top of thread T's stack and
@@ -852,34 +857,4 @@ thread_block_till(int64_t wakeup_at) {
   list_insert_ordered(&sleepers, &cur->sleepers_elem, before, NULL);
   thread_block();
   intr_set_level(previous_intr);
-}
-
-bool check_child_status(tid_t child_tid){
-  struct list_elem *e;
-
-  for (e = list_begin (&all_list); e != list_end (&all_list);
-       e = list_next (e))
-  {
-    struct thread *t = list_entry (e, struct thread, allelem);
-    if(t->tid == child_tid){
-      if(t->status!=THREAD_DYING){
-        return true;
-      }
-    }
-  }
-  return false;
-}
-
-struct thread* get_thread_from_tid (tid_t tid){
-  struct list_elem *e;
-
-  for (e = list_begin (&all_list); e != list_end (&all_list);
-       e = list_next (e))
-  {
-    struct thread *t = list_entry (e, struct thread, allelem);
-    if(t->tid == tid){
-      return t;
-    }
-  }
-  return NULL;
 }

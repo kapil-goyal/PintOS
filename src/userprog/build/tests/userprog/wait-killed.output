@@ -1,6 +1,6 @@
 Copying tests/userprog/wait-killed to scratch partition...
 Copying tests/userprog/child-bad to scratch partition...
-Writing command line to /tmp/KjqVxcwaHf.dsk...
+Writing command line to /tmp/djymxeYCYD.dsk...
 squish-pty bochs -q
 ========================================================================
                        Bochs x86 Emulator 2.5.1
@@ -9,8 +9,8 @@ squish-pty bochs -q
 ========================================================================
 Kernel command line: -q -f extract run wait-killed
 Pintos booting with 4,096 kB RAM...
-373 pages available in kernel pool.
-373 pages available in user pool.
+370 pages available in kernel pool.
+370 pages available in user pool.
 Calibrating timer...  204,600 loops/s.
 hd0:0: detected 1,008 sector (504 kB) disk, model "Generic 1234", serial "BXHD00011"
 hd0:1: detected 4,032 sector (1 MB) disk, model "Generic 1234", serial "BXHD00012"
@@ -24,13 +24,13 @@ Erasing ustar archive...
 Executing 'wait-killed':
 (wait-killed) begin
 (child-bad) begin
+child-bad: exit(-1)
 (wait-killed) wait(exec()) = -1
 (wait-killed) end
 wait-killed: exit(0)
-child-bad: exit(-1)
 Execution of 'wait-killed' complete.
-Timer: 461 ticks
-Thread: 30 idle ticks, 359 kernel ticks, 75 user ticks
+Timer: 462 ticks
+Thread: 30 idle ticks, 360 kernel ticks, 75 user ticks
 hd0:0: 0 reads, 0 writes
 hd0:1: 116 reads, 390 writes
 hd1:0: 191 reads, 2 writes

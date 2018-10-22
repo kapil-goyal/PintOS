@@ -1,6 +1,6 @@
 Copying tests/userprog/exec-arg to scratch partition...
 Copying tests/userprog/child-args to scratch partition...
-Writing command line to /tmp/TdkZSxQeL4.dsk...
+Writing command line to /tmp/U7K4tMqpIT.dsk...
 squish-pty bochs -q
 ========================================================================
                        Bochs x86 Emulator 2.5.1
@@ -9,8 +9,8 @@ squish-pty bochs -q
 ========================================================================
 Kernel command line: -q -f extract run exec-arg
 Pintos booting with 4,096 kB RAM...
-373 pages available in kernel pool.
-373 pages available in user pool.
+370 pages available in kernel pool.
+370 pages available in user pool.
 Calibrating timer...  204,600 loops/s.
 hd0:0: detected 1,008 sector (504 kB) disk, model "Generic 1234", serial "BXHD00011"
 hd0:1: detected 4,032 sector (1 MB) disk, model "Generic 1234", serial "BXHD00012"
@@ -33,8 +33,8 @@ child-args: exit(0)
 (exec-arg) end
 exec-arg: exit(0)
 Execution of 'exec-arg' complete.
-Timer: 473 ticks
-Thread: 30 idle ticks, 358 kernel ticks, 88 user ticks
+Timer: 472 ticks
+Thread: 30 idle ticks, 358 kernel ticks, 87 user ticks
 hd0:0: 0 reads, 0 writes
 hd0:1: 116 reads, 388 writes
 hd1:0: 190 reads, 2 writes

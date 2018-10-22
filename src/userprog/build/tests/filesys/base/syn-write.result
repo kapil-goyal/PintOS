@@ -1,2 +1,1 @@
-FAIL
-run: exec child 6 of 10: "child-syn-wrt 5": FAILED
+PASS
